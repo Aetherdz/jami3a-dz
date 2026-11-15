@@ -78,6 +78,7 @@ components/     ui shell, program list (tracks + themes), directory, search, LMD
 lib/fields.ts   the 15 fields and 12 streams
 lib/rule.ts     per-program weighting, kept because the BAC reader mirrors it
 lib/calc.ts     numeric parsing shared by the data layer
+lib/curricula.ts 34 first-year LMD curricula used to seed the calculator
 lib/majors.ts   canonicalisation, tracks, themes, aggregates
 scripts/        PDF → JSON, Arabic names generator
 design/         preview board for this site and BAC DZ, plus page screenshots
