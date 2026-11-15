@@ -27,11 +27,11 @@ export function TabBar() {
               <Link
                 href={tab.href}
                 aria-current={active ? "page" : undefined}
-                className={`flex h-14 flex-col items-center justify-center gap-0.5 text-[10.5px] ${
+                className={`flex h-16 flex-col items-center justify-center gap-1 text-[13px] ${
                   active ? "text-ink" : "text-muted"
                 }`}
               >
-                <span aria-hidden className={`text-[15px] leading-none ${active ? "text-brand" : ""}`}>
+                <span aria-hidden className={`text-[17px] leading-none ${active ? "text-brand" : ""}`}>
                   {tab.icon}
                 </span>
                 <span className={active ? "font-semibold" : ""}>{tab.label}</span>

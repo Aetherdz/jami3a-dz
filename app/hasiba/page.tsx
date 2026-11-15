@@ -1,13 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { calcIndex, stats } from "@/lib/majors";
 import { Shell, Breadcrumbs, PageTitle } from "@/components/ui";
-import { Calculator } from "@/components/calculator";
+import { LmdCalculator } from "@/components/lmd-calculator";
 
 export const metadata: Metadata = {
-  title: "حاسبة المعدل الموزون — قارن معدلك بمعدلات 2026",
+  title: "حاسبة المعدل الجامعي — السداسي والأرصدة",
   description:
-    "أدخل شعبتك ومعدل البكالوريا وعلامات المواد الأساسية لتحصل على معدلك الموزون في كل ميدان، ثم قارنه بأدنى المعدلات المنشورة في 248 مؤسسة.",
+    "احسب معدل السداسي في نظام LMD من علامات وحداتك ومعاملاتها وأرصدتها، مع الأرصدة المحصّلة والمعدل السنوي. لا علاقة لها بمعدلات البكالوريا.",
   alternates: { canonical: "/hasiba" },
 };
 
@@ -21,47 +20,52 @@ export default function CalculatorPage() {
 
         <PageTitle
           eyebrow="أدوات"
-          title="حاسبة المعدل الموزون"
-          lead="الصيغ من جدول المنشور الوزاري، والأرقام المقارن بها من ملف معدلات القبول 2026. لا نحسب شيئًا غير منشور، وحين تنقص علامة نقول لك أي علامة."
+          title="حاسبة المعدل الجامعي"
+          lead="معدل السداسي هو متوسط علامات وحداتك بمعاملاتها، والأرصدة تُحتسب عند 10.00. أدخل وحدات السداسي كما هي في بطاقة التكوين."
           aside={
-            <div className="border border-line bg-surface px-4 py-3 text-[11px] leading-5 text-muted">
-              <p className="num text-[13px] font-semibold text-ink">{stats.programs} تخصصًا</p>
-              <p>في {stats.institutions} مؤسسة</p>
+            <div className="border border-line bg-surface px-4 py-3 text-[15px] leading-6 text-muted">
+              <p className="num text-[17px] font-semibold text-ink">30 رصيدًا</p>
+              <p>في السداسي وفق نظام LMD</p>
             </div>
           }
         />
 
-        <div className="py-6">
-          <Calculator entries={calcIndex} />
+        <div className="py-8">
+          <LmdCalculator />
         </div>
 
-        <div className="grid gap-5 border-t border-line-strong py-6 md:grid-cols-3">
-          <div>
-            <p className="eyebrow">لماذا يختلف المعدل؟</p>
-            <p className="mt-2 text-[12px] leading-6 text-muted">
-              المعدل الموزون يمنح المعدل العام وزنًا مضاعفًا، ويضيف علامة المادة الأساسية للميدان. لذلك قد يكون معدلك في
-              الطب أعلى أو أقل من معدلك العام، ومعدلك في الحقوق هو معدلك العام نفسه.
-            </p>
+        <section className="border-t border-line-strong py-8">
+          <h2 className="font-display text-[24px] font-bold text-ink">كيف يُحسب</h2>
+          <div className="mt-4 grid gap-px bg-line md:grid-cols-3">
+            {[
+              [
+                "المعدل الفصلي",
+                "مجموع (علامة كل وحدة × معاملها) ÷ مجموع المعاملات. الوحدة التي لم تُدخل لها علامة لا تدخل في الحساب.",
+              ],
+              [
+                "الأرصدة والتعويض",
+                "الوحدة تُكتسب عند 10.00 أو أكثر. إذا بلغ معدل السداسي 10.00 تُكتسب أرصدة السداسي كلها بالتعويض بين وحداته.",
+              ],
+              [
+                "المعدل السنوي",
+                "متوسط معدلي السداسيين. الانتقال إلى السنة الموالية يخضع كذلك لعدد الأرصدة المكتسبة، حسب نظام المؤسسة.",
+              ],
+            ].map(([title, text]) => (
+              <div key={title} className="bg-bg p-5">
+                <p className="text-[17px] font-semibold text-ink">{title}</p>
+                <p className="mt-2 text-[16px] leading-7 text-muted">{text}</p>
+              </div>
+            ))}
           </div>
-          <div>
-            <p className="eyebrow">وماذا عن التقني رياضي؟</p>
-            <p className="mt-2 text-[12px] leading-6 text-muted">
-              في علوم الطبيعة والحياة وعلوم الأرض والصحة، تُرتَّب شعبة تقني رياضي على المعدل العام بدل الصيغة الموزونة.
-              الحاسبة تطبّق هذا الاستثناء تلقائيًا.
-            </p>
-          </div>
-          <div>
-            <p className="eyebrow">النتيجة استرشادية</p>
-            <p className="mt-2 text-[12px] leading-6 text-muted">
-              المقارنة تتم مع أدنى رقم منشور للتخصص، وهو رقم أولوية واحدة من ثلاث. القبول الفعلي يعتمد على الأولوية
-              والمقاعد والرغبات.{" "}
-              <Link href="/sanawat#qiraa" className="text-brand hover:underline">
-                اقرأ كيف نقرأ الأرقام
-              </Link>
-              .
-            </p>
-          </div>
-        </div>
+          <p className="mt-5 text-[16px] leading-7 text-muted">
+            أسماء الوحدات ومعاملاتها وأرصدتها تُحدَّد في بطاقة التكوين لكل مؤسسة، وليست موحّدة بين التخصصات. هذه الحاسبة
+            تحسب ما تدخله أنت، ولا تضيف قاعدة لا تنصّ عليها بطاقتك. أما أرقام القبول والتوجيه فتخصّ موقع البكالوريا:{" "}
+            <a className="link" href="https://bac-dz-iota.vercel.app" target="_blank" rel="noreferrer">
+              bac-dz-iota.vercel.app
+            </a>
+            .
+          </p>
+        </section>
       </div>
     </Shell>
   );

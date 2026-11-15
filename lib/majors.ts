@@ -15,7 +15,6 @@
  *   3. a theme inside the field, used to split long fields into small sections.
  */
 import raw from "@/data/minimums.json";
-import trendsRaw from "@/data/trends.json";
 import institutionsRaw from "@/data/institutions.json";
 import { programNamesAr } from "@/content/names";
 import { fieldById, fieldByLetter, type Field, type FieldId } from "./fields";
@@ -466,60 +465,6 @@ export const searchIndex: SearchEntry[] = programs.map((program) => ({
   track: program.track,
   institutions: program.institutions,
   low: program.low,
-}));
-
-/* -------------------------------------------------------------------------- */
-/* Trends                                                                      */
-/* -------------------------------------------------------------------------- */
-
-export type TrendPoint = { year: number; low: number; median: number; n: number };
-
-export const trendYears: number[] = trendsRaw.years as number[];
-
-export const trendStats = trendsRaw.stats as Record<string, { rows: number; institutions: number; numericRows: number }>;
-
-const trendPrograms = trendsRaw.programs as Record<
-  string,
-  Record<string, { low: number; median: number; n: number }>
->;
-
-/** Lowest/median published number per session, for one program. */
-export function trendFor(program: Program): TrendPoint[] {
-  const record = trendPrograms[`${program.field.letter}|${program.fr}`];
-  if (!record) return [];
-  return Object.entries(record)
-    .map(([year, point]) => ({ year: Number(year), low: point.low, median: point.median, n: point.n }))
-    .sort((a, b) => a.year - b.year);
-}
-
-/**
- * The smallest program record the calculator needs. Rows stay on the server:
- * 4185 of them would triple the client bundle for no benefit.
- */
-export type CalcEntry = {
-  slug: string;
-  ar: string;
-  fr: string;
-  fieldId: FieldId;
-  fieldAr: string;
-  theme: string;
-  track: Track;
-  low: number | null;
-  median: number | null;
-  withNumbers: number;
-};
-
-export const calcIndex: CalcEntry[] = programs.map((program) => ({
-  slug: program.slug,
-  ar: program.ar,
-  fr: program.fr,
-  fieldId: program.field.id,
-  fieldAr: program.field.ar,
-  theme: program.theme,
-  track: program.track,
-  low: program.low,
-  median: program.median,
-  withNumbers: program.withNumbers,
 }));
 
 export const stats = {

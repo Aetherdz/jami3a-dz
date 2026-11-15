@@ -9,7 +9,7 @@ import { ProgramSearch } from "@/components/search";
 export const metadata: Metadata = {
   title: "جامعة الجزائر — المؤسسات، التخصصات، والحياة الجامعية",
   description:
-    "دليل الجامعة الجزائرية: 248 مؤسسة، 261 تخصصًا في 15 ميدانًا، ودليل للحياة الجامعية، مع أرقام القبول المنشورة لدورة 2026 وحاسبة المعدل الموزون.",
+    "دليل الجامعة الجزائرية: 248 مؤسسة، 261 تخصصًا في 15 ميدانًا، دليل الحياة الجامعية، وحاسبة المعدل الجامعي بالأرصدة والمعاملات.",
   alternates: { canonical: "/" },
 };
 
@@ -19,7 +19,7 @@ const gates = [
     num: "01",
     title: "المؤسسات",
     meta: `${stats.institutions} مؤسسة`,
-    text: "جامعات، مراكز جامعية، مدارس عليا ومدارس أساتذة. افتح مؤسستك واقرأ التخصصات والأرقام التي نشرتها.",
+    text: "جامعات، مراكز جامعية، مدارس عليا ومدارس أساتذة. افتح مؤسستك واقرأ التخصصات التي تُدرّسها.",
     cta: "اعرف مؤسستك",
   },
   {
@@ -27,7 +27,7 @@ const gates = [
     num: "02",
     title: "التخصصات",
     meta: `${stats.programs} تخصصًا`,
-    text: "من الطب إلى الفلسفة، في 15 ميدانًا. لكل تخصص صيغة ترتيبه وعدد المؤسسات التي نشرت له حدًّا.",
+    text: "من الطب إلى الفلسفة، في 15 ميدانًا. لكل تخصص المؤسسات التي تُدرّسه، وبطاقة تكوينه عندها.",
     cta: "ابحث عن تخصص",
   },
   {
@@ -73,24 +73,24 @@ export default function HomePage() {
       <section className="deep-band">
         <div className="shell grid gap-8 py-10 md:grid-cols-[1.55fr_1fr] md:py-14">
           <div>
-            <p className="eyebrow">جامعة الجزائر · دورة 2026</p>
-            <h1 className="mt-3 font-display text-[34px] font-bold leading-[1.16] tracking-tight text-cream sm:text-[50px]">
+            <p className="eyebrow">جامعة الجزائر · دليل 2026</p>
+            <h1 className="mt-3 font-display text-[36px] font-bold leading-[1.16] text-cream sm:text-[52px]">
               دليل الجامعة الجزائرية
             </h1>
-            <p className="mt-4 max-w-prose text-[13.5px] leading-7 text-cream/70">
-              المؤسسات وما نشرته من تخصصات وأرقام، التخصصات وصيغ ترتيبها، والحياة الجامعية بعد القبول.{" "}
-              {stats.institutions} مؤسسة و{stats.programs} تخصصًا في {stats.fields} ميدانًا، لدورة 2026.
+            <p className="mt-4 max-w-prose text-[16px] leading-7 text-cream/70">
+              المؤسسات وتخصصاتها، التخصصات ومؤسساتها، والحياة الجامعية بعد القبول.{" "}
+              {stats.institutions} مؤسسة و{stats.programs} تخصصًا في {stats.fields} ميدانًا، مع حاسبة معدل السداسي.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               <Link
                 href="/jamiat"
-                className="rounded-card bg-cream px-4 py-2.5 text-[13px] font-semibold text-deep hover:bg-accent-soft"
+                className="inline-flex h-12 items-center rounded-card bg-cream px-6 text-[15px] font-semibold text-deep hover:bg-accent-soft"
               >
                 اعرف مؤسستك
               </Link>
               <Link
                 href="/hayat"
-                className="rounded-card border border-cream/40 px-4 py-2.5 text-[13px] font-semibold text-cream hover:border-cream"
+                className="inline-flex h-12 items-center rounded-card border border-cream/40 px-6 text-[15px] font-semibold text-cream hover:border-cream"
               >
                 الحياة الجامعية
               </Link>
@@ -99,7 +99,7 @@ export default function HomePage() {
 
           <div className="self-end">
             <ProgramSearch index={searchIndex} tone="dark" />
-            <p className="mt-2 text-[10.5px] leading-5 text-cream/50">
+            <p className="mt-2 text-[12.5px] leading-5 text-cream/50">
               اكتب حرفين على الأقل. البحث يغطي التخصصات بالعربية والفرنسية.
             </p>
           </div>
@@ -111,11 +111,11 @@ export default function HomePage() {
               [stats.institutions, "مؤسسة جامعية"],
               [stats.programs, "تخصصًا"],
               [stats.fields, "ميدان تكوين"],
-              [stats.rows.toLocaleString("fr-FR"), "سطرًا في الملف الرسمي"],
+              ["3", "سنوات الليسانس"],
             ].map(([value, label]) => (
               <div key={String(label)}>
-                <div className="num font-display text-[26px] font-bold leading-none text-cream">{value}</div>
-                <div className="mt-1.5 text-[10.5px] leading-tight text-cream/55">{label}</div>
+                <div className="num font-display text-[28px] font-bold leading-none text-cream">{value}</div>
+                <div className="mt-1.5 text-[12.5px] leading-tight text-cream/55">{label}</div>
               </div>
             ))}
           </div>
@@ -134,11 +134,11 @@ export default function HomePage() {
             >
               <div className="flex items-baseline justify-between gap-2">
                 <span className="index">{gate.num}</span>
-                <span className="num text-[10px] text-muted/70">{gate.meta}</span>
+                <span className="num text-[12px] text-muted/70">{gate.meta}</span>
               </div>
-              <h3 className="mt-2 font-display text-[20px] font-bold text-ink group-hover:text-brand">{gate.title}</h3>
-              <p className="mt-1.5 text-[11.5px] leading-6 text-muted">{gate.text}</p>
-              <span className="mt-auto pt-3 text-[11.5px] font-semibold text-brand">
+              <h3 className="mt-2 font-display text-[22px] font-bold text-ink group-hover:text-brand">{gate.title}</h3>
+              <p className="mt-1.5 text-[13.5px] leading-6 text-muted">{gate.text}</p>
+              <span className="mt-auto pt-3 text-[13.5px] font-semibold text-brand">
                 {gate.cta} <span aria-hidden>←</span>
               </span>
             </Link>
@@ -161,8 +161,8 @@ export default function HomePage() {
         <div className="mt-4 grid gap-px bg-line sm:grid-cols-2">
           {lifeItems.map((item) => (
             <Link key={item.href} href={item.href} className="group bg-bg p-4 hover:bg-surface">
-              <h3 className="text-[13px] font-semibold text-ink group-hover:text-brand">{item.title}</h3>
-              <p className="mt-1 text-[11.5px] leading-6 text-muted">{item.text}</p>
+              <h3 className="text-[15px] font-semibold text-ink group-hover:text-brand">{item.title}</h3>
+              <p className="mt-1 text-[13.5px] leading-6 text-muted">{item.text}</p>
             </Link>
           ))}
         </div>
@@ -189,8 +189,8 @@ export default function HomePage() {
             >
               <div className="border-b border-line p-4">
                 <p className="eyebrow">{family.short}</p>
-                <h3 className="mt-1.5 font-display text-[18px] font-bold leading-snug text-ink">{family.ar}</h3>
-                <p className="mt-1.5 text-[11px] leading-5 text-muted">{family.lead}</p>
+                <h3 className="mt-1.5 font-display text-[19.5px] font-bold leading-snug text-ink">{family.ar}</h3>
+                <p className="mt-1.5 text-[13px] leading-5 text-muted">{family.lead}</p>
               </div>
               <ul>
                 {family.fieldIds.map((id) => {
@@ -200,14 +200,14 @@ export default function HomePage() {
                     <li key={id} className="border-b border-line/60 last:border-0">
                       <Link href={`/mayadin/${id}`} className="group flex items-baseline justify-between gap-3 px-4 py-2">
                         <span className="min-w-0">
-                          <span className="block truncate text-[12px] font-semibold text-ink group-hover:text-brand">
+                          <span className="block truncate text-[14px] font-semibold text-ink group-hover:text-brand">
                             {field.ar}
                           </span>
-                          <span className="mt-0.5 block truncate text-[10px] text-muted">
+                          <span className="mt-0.5 block truncate text-[12px] text-muted">
                             {summary ? `${summary.programs} تخصصًا · ${summary.institutions} مؤسسة` : ""}
                           </span>
                         </span>
-                        <span className="num shrink-0 text-[10px] text-muted/60">{field.letter}</span>
+                        <span className="num shrink-0 text-[12px] text-muted/60">{field.letter}</span>
                       </Link>
                     </li>
                   );
@@ -222,32 +222,32 @@ export default function HomePage() {
       <section className="shell pb-9">
         <SectionHead
           index="04"
-          title="أرقام القبول المنشورة"
-          lead="ملف دورة 2026 كما نُشر: نعرض الأرقام، ونشرح ما تعنيه وما لا تعنيه."
+          title="الوحدات والمعاملات"
+          lead="الوحدات ومعاملاتها وأرصدتها تُنشر في بطاقة التكوين لكل مؤسسة، لا في قائمة موحّدة."
           action={
-            <Link href="/sanawat" className="hover:underline">
-              الأرقام عبر الدورات
+            <Link href="/hasiba" className="hover:underline">
+              الحاسبة
             </Link>
           }
         />
         <div className="mt-4 grid gap-px bg-line md:grid-cols-3">
           {[
             [
-              "الأعمدة الثلاثة أولويات",
-              "لكل تخصص ثلاثة أرقام (أ1، أ2، أ3)؛ كل عمود يخصّ أولوية في بطاقة التكوين، وليس ثلاث سنوات ولا ثلاث جامعات.",
+              "بطاقة التكوين",
+              "كل مؤسسة تنشر بطاقة تكوين لكل تخصص: الوحدات، معاملاتها، أرصدتها، والسداسي الذي تُدرَّس فيه.",
             ],
             [
-              "«NC» و«--» ليستا صفرًا",
-              "NC تعني أن الفيلير لم تُشبَع فلم يُحسب حد أدنى، و-- تعني أن أحدًا لم يُوجَّه في تلك الأولوية. نعرضهما كما هما.",
+              "لا قائمة موحّدة",
+              "الوحدات تختلف بين مؤسسة وأخرى وبين سنة وأخرى؛ قائمة واحدة لكل التخصصات ستكون تخمينًا، ولا ننشر تخمينًا.",
             ],
             [
-              "لا أحد يضمن مقعدًا",
-              "المعدل الموزون شرط ترتيب لا وعد بقبول. الترتيب النهائي يعتمد على الأولويات والطاقة الاستيعابية والرغبات.",
+              "احسب معدلك",
+              "أدخل وحدات سداسيك بمعاملاتها وأرصدتها وعلاماتها، فتحصل على المعدل الفصلي والأرصدة المكتسبة والمعدل السنوي.",
             ],
           ].map(([title, text]) => (
             <div key={title} className="bg-bg p-4">
-              <p className="text-[12px] font-semibold text-ink">{title}</p>
-              <p className="mt-1.5 text-[11.5px] leading-6 text-muted">{text}</p>
+              <p className="text-[14px] font-semibold text-ink">{title}</p>
+              <p className="mt-1.5 text-[13.5px] leading-6 text-muted">{text}</p>
             </div>
           ))}
         </div>
@@ -257,17 +257,18 @@ export default function HomePage() {
       <section className="shell pb-10">
         <div className="flex flex-col gap-4 border border-brand bg-brand p-6 text-cream md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-[10.5px] font-semibold text-accent-soft">الحاسبة</p>
-            <h2 className="mt-1 font-display text-[22px] font-bold leading-snug text-cream">
-              اعرف معدلك الموزون قبل أن تختار
+            <p className="text-[12.5px] font-semibold text-accent-soft">الحاسبة</p>
+            <h2 className="mt-1 font-display text-[24px] font-bold leading-snug text-cream">
+              معدل السداسي بالأرصدة والمعاملات
             </h2>
-            <p className="mt-1.5 max-w-prose text-[11.5px] leading-6 text-cream/70">
-              أدخل شعبتك وعلاماتك، ونحسب معدلك في كل ميدان، ثم نقارنه بأدنى رقم منشور للتخصص.
+            <p className="mt-1.5 max-w-prose text-[13.5px] leading-6 text-cream/70">
+              أدخل وحداتك كما في بطاقة التكوين: المعامل، الرصيد، والعلامة. تحصل على المعدل الفصلي والأرصدة المكتسبة
+              والمعدل السنوي.
             </p>
           </div>
           <Link
             href="/hasiba"
-            className="shrink-0 rounded-card bg-cream px-4 py-2.5 text-[13px] font-semibold text-deep hover:bg-accent-soft"
+            className="inline-flex h-12 shrink-0 items-center rounded-card bg-cream px-6 text-[15px] font-semibold text-deep hover:bg-accent-soft"
           >
             افتح الحاسبة
           </Link>

@@ -6,7 +6,7 @@ const base = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const staticPages = ["", "/mayadin", "/takhasus", "/hasiba", "/jamiat", "/hayat", "/sanawat"].map((path) => ({
+  const staticPages = ["", "/mayadin", "/takhasus", "/hasiba", "/jamiat", "/hayat"].map((path) => ({
     url: `${base}${path}`,
     lastModified: now,
     changeFrequency: "monthly" as const,

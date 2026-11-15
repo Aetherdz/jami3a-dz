@@ -30,7 +30,7 @@ export default function InstitutionsPage() {
         <PageTitle
           eyebrow="الفهرس"
           title="المؤسسات وتخصصاتها المنشورة"
-          lead={`لكل مؤسسة في ملف 2026 صفحتها: التخصصات التي نشرت لها حدًّا أدنى، وأرقام الأولويات الثلاثة. ابحث بالاسم، أو صفِّ حسب الولاية والنوع، ورتّبها حسب عدد التخصصات.`}
+          lead={`لكل مؤسسة صفحتها: التخصصات التي تُدرّسها، وميادينها، ونوع كل تكوين. ابحث بالاسم، أو صفِّ حسب الولاية والنوع، ورتّبها حسب عدد التخصصات.`}
           aside={
             <div className="flex border border-line bg-surface">
               <Stat value={stats.institutions} label="مؤسسة" />
@@ -43,7 +43,7 @@ export default function InstitutionsPage() {
           <InstitutionDirectory items={items} />
         </div>
 
-        <p className="border-t border-line-strong py-5 text-[11.5px] leading-6 text-muted">
+        <p className="border-t border-line-strong py-5 text-[13.5px] leading-6 text-muted">
           الأسماء العربية والولايات أُضيفت للقراءة فقط: الملف الرسمي ينشر الأسماء بالفرنسية. المؤسسات التي لا يذكر اسمها
           مدينة تُركت بلا ولاية بدل تخمينها. بعض المؤسسات تظهر باسم مختصر، مثل «C. UNIV. AFLOU» أو «ANNEXE …».
         </p>

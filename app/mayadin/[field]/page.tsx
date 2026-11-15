@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { fieldById, fields, formulaText, eligibleText, type FieldId } from "@/lib/fields";
-import { programsForField, type Program } from "@/lib/majors";
+import { fieldById, fields, type FieldId } from "@/lib/fields";
+import { programsForField } from "@/lib/majors";
 import { familyByField } from "@/lib/families";
-import { Shell, Breadcrumbs, PageTitle, FormulaBox, Stat } from "@/components/ui";
+import { Shell, Breadcrumbs, PageTitle, Stat } from "@/components/ui";
 import { ProgramList, type ProgramListItem } from "@/components/program-list";
 
 type Params = { field: string };
@@ -17,21 +17,12 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { field: id } = await params;
   const field = fieldById[id as FieldId];
   if (!field) return {};
+  const count = programsForField(field.id).length;
+  const institutions = new Set(programsForField(field.id).flatMap((program) => program.rows.map((row) => row.e))).size;
   return {
-    title: `${field.ar} — التخصصات والمعدلات المنشورة 2026`,
-    description: `${field.summary} ${programsForField(field.id).length} تخصصًا في ${new Set(
-      programsForField(field.id).flatMap((program) => program.rows.map((row) => row.e)),
-    ).size} مؤسسة، مع صيغة الترتيب المنشورة لكل تخصص.`,
+    title: `${field.ar} — ${count} تخصصًا في ${institutions} مؤسسة`,
+    description: `${field.summary} التخصصات التي تُدرَّس في هذا الميدان، والمؤسسات التي تقدّمها، ونوع كل تكوين.`,
     alternates: { canonical: `/mayadin/${field.id}` },
-  };
-}
-
-function range(programs: Program[]): { low: number | null; high: number | null } {
-  const lows = programs.map((program) => program.low).filter((value): value is number => value !== null);
-  const highs = programs.map((program) => program.high).filter((value): value is number => value !== null);
-  return {
-    low: lows.length ? Math.min(...lows) : null,
-    high: highs.length ? Math.max(...highs) : null,
   };
 }
 
@@ -42,7 +33,6 @@ export default async function FieldPage({ params }: { params: Promise<Params> })
 
   const programs = programsForField(field.id);
   const institutions = new Set(programs.flatMap((program) => program.rows.map((row) => row.e))).size;
-  const bounds = range(programs);
   const family = familyByField[field.id];
   const siblings = family ? family.fieldIds.filter((other) => other !== field.id) : [];
 
@@ -51,10 +41,8 @@ export default async function FieldPage({ params }: { params: Promise<Params> })
     ar: program.ar,
     fr: program.fr,
     institutions: program.institutions,
-    low: program.low,
     theme: program.theme,
     track: program.track,
-    withNumbers: program.withNumbers,
   }));
 
   return (
@@ -78,46 +66,25 @@ export default async function FieldPage({ params }: { params: Promise<Params> })
             <div className="flex border border-line bg-surface">
               <Stat value={programs.length} label="تخصصًا" />
               <Stat value={institutions} label="مؤسسة" />
-              <Stat
-                value={bounds.low !== null ? bounds.low.toFixed(2) : "—"}
-                label="أدنى رقم منشور"
-              />
             </div>
           }
         />
 
-        <div className="grid gap-6 py-6 md:grid-cols-[1.15fr_1fr]">
-          <FormulaBox
-            text={formulaText[field.formula].ar}
-            note={
-              <>
-                <p>الشعب المقبولة: {eligibleText(field)}.</p>
-                {field.technicalFormula && field.technicalFormula !== field.formula && (
-                  <p className="mt-1">
-                    شعبة تقني رياضي: <span className="num">{formulaText[field.technicalFormula].ar}</span> — حسب
-                    استثناء المنشور لهذا الميدان.
-                  </p>
-                )}
-                <p className="mt-1">
-                  الصيغة هنا للميدان كاملًا. داخل الميدان، قد يغيّر التخصص المادة الأساسية (مثل لغة التخصص في اللغات
-                  والترجمة)، وصفحة كل تخصص تذكر صيغته بدقة.
-                </p>
-              </>
-            }
-          />
-
-          <div className="border border-line bg-surface p-4">
-            <p className="eyebrow">كيف تقرأ هذه الصفحة</p>
-            <p className="mt-2 text-[12px] leading-6 text-muted">
-              {programs.length} تخصصًا موزعة على {new Set(programs.map((program) => program.theme)).size} مجموعة. نبدأ
-              بالليسانس الجامعية، ونضع مسارات المدارس العليا للأساتذة في تبويب منفصل لأنها غالبًا تشترط مقابلة أو اختبارًا.
-              الرقم تحت كل تخصص هو أدنى قيمة منشورة له في أي مؤسسة، وليس حدًّا واحدًا لكل الوطن.
+        <div className="grid gap-6 py-7 md:grid-cols-[1.6fr_1fr]">
+          <p className="text-[17px] leading-8 text-muted">
+            {programs.length} تخصصًا موزعة على {new Set(programs.map((program) => program.theme)).size} مجموعة. نبدأ
+            بالليسانس الجامعية، ونفصل مسارات المدارس العليا للأساتذة لأنها غالبًا تشترط مقابلة أو اختبارًا. كل تخصص يعرض
+            المؤسسات التي تُدرّسه.
+          </p>
+          <div className="border border-line bg-surface p-5">
+            <p className="eyebrow">الوحدات والمعاملات</p>
+            <p className="mt-2 text-[16px] leading-7 text-muted">
+              وحدات كل تخصص ومعاملاتها وأرصدتها في بطاقة التكوين الخاصة بكل مؤسسة، وتختلف بينها. لا ننشر قائمة موحّدة
+              لأنها ستكون تخمينًا.
             </p>
-            <p className="num mt-2 text-[11px] text-muted">
-              {bounds.low !== null && bounds.high !== null
-                ? `المدى المنشور داخل الميدان: ${bounds.low.toFixed(2)} — ${bounds.high.toFixed(2)}`
-                : "لا توجد أرقام منشورة في هذا الميدان"}
-            </p>
+            <Link href="/hasiba" className="mt-3 inline-block text-[16px] text-brand hover:underline">
+              احسب معدلك الجامعي ←
+            </Link>
           </div>
         </div>
 
@@ -125,29 +92,16 @@ export default async function FieldPage({ params }: { params: Promise<Params> })
           <ProgramList items={items} />
         </div>
 
-        <div className="mt-8 grid gap-8 border-t border-line-strong pt-5 md:grid-cols-3">
-          <div>
-            <p className="eyebrow">مقارنة معدلك</p>
-            <h2 className="mt-2 font-display text-[19px] font-bold text-ink">هل يقع معدلك داخل هذه الأرقام؟</h2>
-            <p className="mt-2 text-[12px] leading-6 text-muted">
-              الحاسبة تحسب معدلك الموزون لكل ميدان ثم تقارنه بأدنى رقم منشور لكل تخصص، وتبيّن لك الفارق.
-            </p>
-            <Link
-              href="/hasiba"
-              className="mt-3 inline-block rounded-card border border-ink bg-ink px-4 py-2 text-[12.5px] font-semibold text-bg hover:bg-brand hover:border-brand"
-            >
-              إلى الحاسبة
-            </Link>
-          </div>
+        <div className="mt-9 grid gap-8 border-t border-line-strong pt-6 md:grid-cols-2">
           <div>
             <p className="eyebrow">بعد القبول</p>
-            <h2 className="mt-2 font-display text-[19px] font-bold text-ink">الحياة الجامعية</h2>
-            <p className="mt-2 text-[12px] leading-6 text-muted">
+            <h2 className="mt-2 font-display text-[23px] font-bold text-ink">الحياة الجامعية</h2>
+            <p className="mt-2 text-[16px] leading-7 text-muted">
               السكن، المطعم، النقل، ونظام الدراسة: ما ينتظرك بعد أن يُغلق باب التسجيل.
             </p>
             <Link
               href="/hayat"
-              className="mt-3 inline-block rounded-card border border-line-strong px-4 py-2 text-[12.5px] font-semibold text-ink hover:border-ink"
+              className="mt-3 inline-flex h-11 items-center rounded-card border border-ink bg-ink px-5 text-[16px] font-semibold text-bg hover:border-brand hover:bg-brand"
             >
               اقرأ الدليل
             </Link>
@@ -157,9 +111,9 @@ export default async function FieldPage({ params }: { params: Promise<Params> })
             <ul className="mt-2">
               {siblings.map((other) => (
                 <li key={other} className="border-b border-line/70">
-                  <Link href={`/mayadin/${other}`} className="flex items-baseline justify-between gap-3 py-2.5 hover:text-brand">
-                    <span className="text-[12.5px] font-semibold text-ink">{fieldById[other].ar}</span>
-                    <span className="num text-[10.5px] text-muted">{programsForField(other).length} تخصصًا</span>
+                  <Link href={`/mayadin/${other}`} className="flex items-baseline justify-between gap-3 py-3 hover:text-brand">
+                    <span className="text-[17px] font-semibold text-ink">{fieldById[other].ar}</span>
+                    <span className="num text-[15px] text-muted">{programsForField(other).length} تخصصًا</span>
                   </Link>
                 </li>
               ))}

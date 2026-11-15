@@ -72,8 +72,8 @@ export function ProgramSearch({ index, tone = "light" }: { index: SearchEntry[];
         placeholder="الطب، الإعلام الآلي، الحقوق…"
         className={
           dark
-            ? "mt-2 h-12 w-full rounded-card border border-cream/35 bg-transparent px-4 text-[15px] text-cream outline-none placeholder:text-cream/45 focus:border-cream"
-            : "mt-2 h-12 w-full rounded-card border border-line-strong bg-surface px-4 text-[15px] text-ink outline-none placeholder:text-muted/70 focus:border-brand focus:ring-1 focus:ring-brand"
+            ? "mt-2 h-12 w-full rounded-card border border-cream/35 bg-transparent px-4 text-[17px] text-cream outline-none placeholder:text-cream/45 focus:border-cream"
+            : "mt-2 h-12 w-full rounded-card border border-line-strong bg-surface px-4 text-[17px] text-ink outline-none placeholder:text-muted/70 focus:border-brand focus:ring-1 focus:ring-brand"
         }
         autoComplete="off"
       />
@@ -83,10 +83,10 @@ export function ProgramSearch({ index, tone = "light" }: { index: SearchEntry[];
             <li key={entry.slug} className="border-b border-line last:border-0">
               <Link href={`/takhasus/${entry.slug}`} className="flex items-baseline justify-between gap-3 px-4 py-2.5 hover:bg-raised">
                 <span className="min-w-0">
-                  <span className="block truncate text-[13.5px] font-semibold text-ink">{entry.ar}</span>
-                  <span className="block truncate text-[11px] text-muted">{entry.field}</span>
+                  <span className="block truncate text-[16px] font-semibold text-ink">{entry.ar}</span>
+                  <span className="block truncate text-[13px] text-muted">{entry.field}</span>
                 </span>
-                <span className="num shrink-0 text-[11px] text-muted">{entry.institutions} مؤسسة</span>
+                <span className="num shrink-0 text-[13px] text-muted">{entry.institutions} مؤسسة</span>
               </Link>
             </li>
           ))}

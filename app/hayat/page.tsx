@@ -79,19 +79,19 @@ export default function LifePage() {
         <div className="shell grid gap-6 py-9 md:grid-cols-[1.5fr_1fr] md:py-12">
           <div>
             <p className="eyebrow">الحياة الجامعية</p>
-            <h1 className="mt-3 font-display text-[31px] font-bold leading-[1.2] tracking-tight text-cream sm:text-[42px]">
+            <h1 className="mt-3 font-display text-[33px] font-bold leading-[1.2] text-cream sm:text-[44px]">
               الحياة الجامعية:
               <br />
               من التسجيل إلى السنة الأولى
             </h1>
-            <p className="mt-4 max-w-prose text-[13px] leading-7 text-cream/70">
+            <p className="mt-4 max-w-prose text-[15px] leading-7 text-cream/70">
               السكن والمطعم والنقل، نظام الدراسة، السنة الأولى، والحرم الجامعي. دليل عملي لما ينتظرك بعد القبول،
               مكتوب ليُقرأ في عشر دقائق ويُستعمل في أربع سنوات.
             </p>
           </div>
           <aside className="self-end border border-cream/20 p-4">
-            <p className="text-[10.5px] font-semibold text-accent-soft">ملاحظة</p>
-            <p className="mt-1.5 text-[12px] leading-6 text-cream/75">
+            <p className="text-[12.5px] font-semibold text-accent-soft">ملاحظة</p>
+            <p className="mt-1.5 text-[14px] leading-6 text-cream/75">
               كل مؤسسة تنشر تفاصيلها بنفسها. حين يختلف ما تقرأه هنا عن إعلان كليتك، إعلان كليتك هو الصحيح.
             </p>
           </aside>
@@ -105,7 +105,7 @@ export default function LifePage() {
               <SectionHead index={chapter.num} title={chapter.title} />
               <div className="mt-3 space-y-2.5">
                 {chapter.body.map((paragraph) => (
-                  <p key={paragraph.slice(0, 24)} className="text-[12px] leading-7 text-muted">
+                  <p key={paragraph.slice(0, 24)} className="text-[14px] leading-7 text-muted">
                     {paragraph}
                   </p>
                 ))}
@@ -117,10 +117,10 @@ export default function LifePage() {
         <div className="mt-10 grid gap-4 border-t border-line-strong pt-6 md:grid-cols-[1fr_1.2fr]">
           <div>
             <p className="eyebrow">التالي</p>
-            <h2 className="mt-2 font-display text-[21px] font-bold leading-snug text-ink">
+            <h2 className="mt-2 font-display text-[23px] font-bold leading-snug text-ink">
               المؤسسة، ثم التخصص، ثم المعدل
             </h2>
-            <p className="mt-2 text-[12px] leading-6 text-muted">
+            <p className="mt-2 text-[14px] leading-6 text-muted">
               الحياة الجامعية تبدأ باختيار واعٍ: مؤسسة تعرفها، وتخصص تفهم صيغته، ومعدل تحسبه بنفسك قبل أن تنتظر نتيجة.
             </p>
           </div>
@@ -132,8 +132,8 @@ export default function LifePage() {
             ].map((item) => (
               <li key={item.href} className="bg-bg">
                 <Link href={item.href} className="group block p-4 hover:bg-surface">
-                  <span className="block text-[13px] font-semibold text-ink group-hover:text-brand">{item.title}</span>
-                  <span className="mt-1 block text-[10.5px] text-muted">{item.text}</span>
+                  <span className="block text-[15px] font-semibold text-ink group-hover:text-brand">{item.title}</span>
+                  <span className="mt-1 block text-[12.5px] text-muted">{item.text}</span>
                 </Link>
               </li>
             ))}

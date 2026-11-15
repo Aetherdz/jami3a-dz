@@ -55,7 +55,7 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="UNIV. ADRAR، مدرسة، مركز جامعي…"
-            className="mt-1.5 h-10 w-full rounded-card border border-line-strong bg-surface px-3 text-[13px] text-ink outline-none placeholder:text-muted/70 focus:border-brand"
+            className="mt-1.5 h-11 w-full rounded-card border border-line-strong bg-surface px-3 text-[15px] text-ink outline-none placeholder:text-muted/70 focus:border-brand"
             autoComplete="off"
           />
         </div>
@@ -66,7 +66,7 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
               id="jamiat-order"
               value={order}
               onChange={(event) => setOrder(event.target.value)}
-              className="mt-1.5 h-10 w-full rounded-card border border-line-strong bg-surface px-2 text-[12.5px] text-ink outline-none focus:border-brand"
+              className="mt-1.5 h-11 w-full rounded-card border border-line-strong bg-surface px-3 text-[15px] text-ink outline-none focus:border-brand"
             >
               <option value="programs">الأكثر تخصصات</option>
               <option value="name">الاسم</option>
@@ -79,7 +79,7 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
               id="jamiat-wilaya"
               value={wilaya}
               onChange={(event) => setWilaya(event.target.value)}
-              className="mt-1.5 h-10 w-full rounded-card border border-line-strong bg-surface px-2 text-[12.5px] text-ink outline-none focus:border-brand"
+              className="mt-1.5 h-11 w-full rounded-card border border-line-strong bg-surface px-3 text-[15px] text-ink outline-none focus:border-brand"
             >
               <option value="all">كل الولايات</option>
               {wilayaList.map((name) => (
@@ -87,7 +87,7 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
               ))}
             </select>
           </div>
-          <p className="num pb-2.5 text-[11px] text-muted">{filtered.length} مؤسسة</p>
+          <p className="num pb-2.5 text-[13px] text-muted">{filtered.length} مؤسسة</p>
         </div>
       </div>
 
@@ -96,11 +96,11 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
           type="button"
           onClick={() => setType("all")}
           aria-pressed={type === "all"}
-          className={`rounded-card border px-2.5 py-1 text-[11.5px] ${
+          className={`rounded-card border px-2.5 py-1 text-[13.5px] ${
             type === "all" ? "border-ink bg-ink text-bg" : "border-line text-muted hover:border-ink hover:text-ink"
           }`}
         >
-          الكل <span className="num mr-1 text-[10px] opacity-70">{items.length}</span>
+          الكل <span className="num mr-1 text-[12px] opacity-70">{items.length}</span>
         </button>
         {types.map((entry) => (
           <button
@@ -108,11 +108,11 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
             type="button"
             onClick={() => setType(entry.key)}
             aria-pressed={type === entry.key}
-            className={`rounded-card border px-2.5 py-1 text-[11.5px] ${
+            className={`rounded-card border px-2.5 py-1 text-[13.5px] ${
               type === entry.key ? "border-ink bg-ink text-bg" : "border-line text-muted hover:border-ink hover:text-ink"
             }`}
           >
-            {typeLabel[entry.key] ?? entry.key} <span className="num mr-1 text-[10px] opacity-70">{entry.count}</span>
+            {typeLabel[entry.key] ?? entry.key} <span className="num mr-1 text-[12px] opacity-70">{entry.count}</span>
           </button>
         ))}
       </div>
@@ -122,22 +122,22 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
           <li key={item.code} className="border-b border-line/70">
             <Link href={`/jamiat/${item.code}`} className="group flex items-baseline justify-between gap-3 py-2.5">
               <span className="min-w-0">
-                <span className="block truncate text-[12.5px] font-semibold text-ink group-hover:text-brand">{item.ar}</span>
-                <span className="mt-0.5 block truncate text-[10px] uppercase tracking-wide text-muted/80">{item.name}</span>
-                <span className="mt-0.5 block text-[10.5px] text-muted">
+                <span className="block truncate text-[14.5px] font-semibold text-ink group-hover:text-brand">{item.ar}</span>
+                <span className="mt-0.5 block truncate text-[12px] uppercase tracking-wide text-muted/80">{item.name}</span>
+                <span className="mt-0.5 block text-[12.5px] text-muted">
                   {typeLabel[item.type] ?? "مؤسسة"}
                   {item.wilaya && ` · ${item.wilaya}`}
                   {" · "}
                   <span className="num">{item.code}</span>
                 </span>
               </span>
-              <span className="num shrink-0 text-[11px] text-muted">{item.programs} تخصصًا</span>
+              <span className="num shrink-0 text-[13px] text-muted">{item.programs} تخصصًا</span>
             </Link>
           </li>
         ))}
       </ul>
 
-      {filtered.length === 0 && <p className="py-10 text-center text-[13px] text-muted">لا توجد مؤسسة مطابقة.</p>}
+      {filtered.length === 0 && <p className="py-10 text-center text-[15px] text-muted">لا توجد مؤسسة مطابقة.</p>}
     </div>
   );
 }
