@@ -17,6 +17,7 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
   const [query, setQuery] = useState("");
   const [type, setType] = useState("all");
   const [wilaya, setWilaya] = useState("all");
+  const [order, setOrder] = useState("programs");
 
   const types = useMemo(() => {
     const counts = new Map<string, number>();
@@ -31,11 +32,16 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return items
+    const list = items
       .filter((item) => (type === "all" ? true : item.type === type))
       .filter((item) => (wilaya === "all" ? true : item.wilaya === wilaya))
       .filter((item) => (q ? `${item.name} ${item.ar} ${item.code}`.toLowerCase().includes(q) : true));
-  }, [items, query, type, wilaya]);
+    return list.sort((a, b) => {
+      if (order === "name") return a.ar.localeCompare(b.ar, "ar");
+      if (order === "wilaya") return (a.wilaya ?? "").localeCompare(b.wilaya ?? "", "ar");
+      return b.programs - a.programs || a.ar.localeCompare(b.ar, "ar");
+    });
+  }, [items, query, type, wilaya, order]);
 
   return (
     <div>
@@ -53,8 +59,21 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
             autoComplete="off"
           />
         </div>
-        <div className="flex items-end gap-3">
-          <div className="w-40">
+        <div className="flex flex-wrap items-end gap-3">
+          <div className="w-32 sm:w-40">
+            <label htmlFor="jamiat-order" className="eyebrow">الترتيب</label>
+            <select
+              id="jamiat-order"
+              value={order}
+              onChange={(event) => setOrder(event.target.value)}
+              className="mt-1.5 h-10 w-full rounded-card border border-line-strong bg-surface px-2 text-[12.5px] text-ink outline-none focus:border-brand"
+            >
+              <option value="programs">الأكثر تخصصات</option>
+              <option value="name">الاسم</option>
+              <option value="wilaya">الولاية</option>
+            </select>
+          </div>
+          <div className="w-32 sm:w-40">
             <label htmlFor="jamiat-wilaya" className="eyebrow">الولاية</label>
             <select
               id="jamiat-wilaya"

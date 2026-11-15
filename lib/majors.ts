@@ -396,18 +396,31 @@ export const institutionInfo: Record<string, InstitutionInfo> = Object.fromEntri
   (institutionsRaw as InstitutionInfo[]).map((item) => [item.code, item]),
 );
 
-/** Institutions that publish at least one program. */
+/**
+ * Institutions that publish at least one row. `programs` counts distinct
+ * programmes, not rows: one institution can repeat a filière for several
+ * priorities, and a row count would overstate what it offers.
+ */
 export const institutions = (() => {
   const map = new Map<
     string,
-    { code: string; name: string; ar: string; wilaya: string | null; type: string; programs: number; fieldIds: Set<FieldId> }
+    {
+      code: string;
+      name: string;
+      ar: string;
+      wilaya: string | null;
+      type: string;
+      keys: Set<string>;
+      fieldIds: Set<FieldId>;
+    }
   >();
   for (const row of rows) {
     const field = fieldByLetter[row.f[0]];
     const info = institutionInfo[row.e];
+    const key = field ? `${field.id}|${canonicalName(row.n)}` : null;
     const entry = map.get(row.e);
     if (entry) {
-      entry.programs += 1;
+      if (key) entry.keys.add(key);
       if (field) entry.fieldIds.add(field.id);
     } else {
       map.set(row.e, {
@@ -416,12 +429,14 @@ export const institutions = (() => {
         ar: info?.ar ?? row.en,
         wilaya: info?.wilaya ?? null,
         type: info?.type ?? "other",
-        programs: 1,
+        keys: new Set(key ? [key] : []),
         fieldIds: new Set(field ? [field.id] : []),
       });
     }
   }
-  return [...map.values()].sort((a, b) => a.ar.localeCompare(b.ar, "ar"));
+  return [...map.values()]
+    .map(({ keys, ...rest }) => ({ ...rest, programs: keys.size }))
+    .sort((a, b) => a.ar.localeCompare(b.ar, "ar"));
 })();
 
 export const wilayas = [...new Set(institutions.map((item) => item.wilaya).filter((name): name is string => Boolean(name)))].sort(
