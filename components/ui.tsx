@@ -9,7 +9,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-line-strong bg-bg/95 backdrop-blur-sm">
       <div aria-hidden className="h-[3px] bg-accent" />
       <div className="shell flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2.5" aria-label="جامعة الجزائر — الصفحة الرئيسية">
+        <Link href="/" className="flex h-11 items-center gap-2.5" aria-label="جامعة الجزائر — الصفحة الرئيسية">
           <Mark className="h-8 w-8 shrink-0" />
           <span className="leading-none">
             <span className="block font-display text-[19.5px] font-bold text-ink">جامعة</span>
@@ -71,29 +71,29 @@ export function SiteFooter() {
 
         <nav aria-label="أقسام الموقع" className="text-[14.5px] leading-7">
           <p className="eyebrow">الأقسام</p>
-          <ul className="mt-2 space-y-0.5 text-cream/70">
+          <ul className="mt-1 text-cream/70">
             <li>
-              <Link href="/jamiat" className="hover:text-cream">
+              <Link href="/jamiat" className="inline-flex min-h-9 items-center hover:text-cream">
                 المؤسسات الجامعية
               </Link>
             </li>
             <li>
-              <Link href="/takhasus" className="hover:text-cream">
+              <Link href="/takhasus" className="inline-flex min-h-9 items-center hover:text-cream">
                 التخصصات
               </Link>
             </li>
             <li>
-              <Link href="/mayadin" className="hover:text-cream">
+              <Link href="/mayadin" className="inline-flex min-h-9 items-center hover:text-cream">
                 الميادين الخمسة عشر
               </Link>
             </li>
             <li>
-              <Link href="/hayat" className="hover:text-cream">
+              <Link href="/hayat" className="inline-flex min-h-9 items-center hover:text-cream">
                 الحياة الجامعية
               </Link>
             </li>
             <li>
-              <Link href="/hasiba" className="hover:text-cream">
+              <Link href="/hasiba" className="inline-flex min-h-9 items-center hover:text-cream">
                 حاسبة المعدل الجامعي
               </Link>
             </li>
@@ -146,7 +146,7 @@ export function Breadcrumbs({ items }: { items: { href?: string; label: string }
         <span key={`${item.label}-${index}`} className="flex items-center gap-1.5">
           {index > 0 && <span aria-hidden className="text-line-strong">/</span>}
           {item.href ? (
-            <Link href={item.href} className="hover:text-ink">
+            <Link href={item.href} className="inline-flex min-h-9 items-center hover:text-ink">
               {item.label}
             </Link>
           ) : (

@@ -96,7 +96,7 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
           type="button"
           onClick={() => setType("all")}
           aria-pressed={type === "all"}
-          className={`rounded-card border px-2.5 py-1 text-[13.5px] ${
+          className={`inline-flex h-11 items-center rounded-card border px-4 text-[13.5px] sm:h-9 sm:px-3 ${
             type === "all" ? "border-ink bg-ink text-bg" : "border-line text-muted hover:border-ink hover:text-ink"
           }`}
         >
@@ -108,7 +108,7 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
             type="button"
             onClick={() => setType(entry.key)}
             aria-pressed={type === entry.key}
-            className={`rounded-card border px-2.5 py-1 text-[13.5px] ${
+            className={`inline-flex h-11 items-center rounded-card border px-4 text-[13.5px] sm:h-9 sm:px-3 ${
               type === entry.key ? "border-ink bg-ink text-bg" : "border-line text-muted hover:border-ink hover:text-ink"
             }`}
           >
