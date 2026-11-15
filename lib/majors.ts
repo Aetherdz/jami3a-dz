@@ -65,12 +65,17 @@ export const trackLabel: Record<Track, string> = {
   distance: "تكوين عن بعد",
 };
 
-/** True when the program exists only because of a local quota. */
-const QUOTA = /\s*--\s*pour bacheliers\s+/i;
+/**
+ * The ministry prints a local quota as a suffix: "ARABE (P.E.P) -- pour
+ * bacheliers ADRAR". The suffix names a wilaya, not another program, so the
+ * whole tail goes — matching only up to "bacheliers" would leave "ADRAR" behind
+ * and turn one program into fifty-eight.
+ */
+const QUOTA = /\s*--\s*pour bacheliers\b.*$/i;
 
 export function canonicalName(name: string): string {
   return name
-    .replace(QUOTA, " ")
+    .replace(QUOTA, "")
     .replace(/\s+/g, " ")
     .trim();
 }

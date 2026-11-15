@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { stats } from "@/lib/majors";
 import { TabBar } from "./tabbar";
 
 export function SiteHeader() {
@@ -142,7 +143,9 @@ export function SiteFooter() {
       <div className="border-t border-line">
         <div className="shell flex flex-wrap items-center justify-between gap-2 py-4 text-[11px] text-muted">
           <span>دورة 2026 · الملف النهائي · قراءة 15 نوفمبر 2026</span>
-          <span className="num">4 185 سطرًا · 261 تخصصًا · 248 مؤسسة</span>
+          <span className="num">
+            {stats.rows.toLocaleString("fr-FR")} سطرًا · {stats.programs} تخصصًا · {stats.institutions} مؤسسة
+          </span>
         </div>
       </div>
     </footer>

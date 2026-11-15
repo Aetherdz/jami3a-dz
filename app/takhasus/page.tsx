@@ -8,9 +8,9 @@ import { ProgramSearch } from "@/components/search";
 import { searchIndex } from "@/lib/majors";
 
 export const metadata: Metadata = {
-  title: "كل التخصصات — 261 تخصصًا ومعدلاتها المنشورة",
+  title: `كل التخصصات — ${stats.programs} تخصصًا ومعدلاتها المنشورة`,
   description:
-    "قائمة التخصصات الجامعية في الجزائر لدورة 2026، مجمّعة في 15 ميدانًا: لكل تخصص عدد المؤسسات وأدنى معدل منشور وصيغة الترتيب.",
+    `قائمة التخصصات الجامعية في الجزائر لدورة 2026، مجمّعة في ${stats.fields} ميدانًا: لكل تخصص عدد المؤسسات وأدنى معدل منشور وصيغة الترتيب.`,
   alternates: { canonical: "/takhasus" },
 };
 
@@ -25,7 +25,7 @@ export default function ProgramsPage() {
         <PageTitle
           eyebrow="الفهرس"
           title="كل التخصصات، مجموعة لا مكوّمة"
-          lead="261 تخصصًا بعد تجميع الصفوف المتكررة. ابحث بالاسم، أو ادخل من الميدان. صفحة كل تخصص تعرض المؤسسات وأرقامها المنشورة."
+          lead={`${stats.programs} تخصصًا بعد تجميع الصفوف المتكررة. ابحث بالاسم، أو ادخل من الميدان. صفحة كل تخصص تعرض المؤسسات وأرقامها المنشورة.`}
           aside={
             <div className="flex border border-line bg-surface">
               <Stat value={stats.programs} label="تخصصًا" />

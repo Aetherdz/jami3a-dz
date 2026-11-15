@@ -26,7 +26,7 @@ export default function FieldsPage() {
         <PageTitle
           eyebrow="الدليل"
           title="خمسة عشر ميدانًا، مرتّبة كما يقرأها الطالب"
-          lead="ابدأ بالعائلة التي تناسب شعبتك، ثم الميدان، ثم التخصص، ثم المؤسسة. لا نعرض 4185 سطرًا في صفحة واحدة."
+          lead={`ابدأ بالعائلة التي تناسب شعبتك، ثم الميدان، ثم التخصص، ثم المؤسسة. لا نعرض ${stats.rows.toLocaleString("fr-FR")} سطرًا في صفحة واحدة.`}
           aside={
             <div className="flex border border-line bg-surface">
               <Stat value={stats.fields} label="ميدانًا" />

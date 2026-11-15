@@ -4,9 +4,9 @@ import { Shell, Breadcrumbs, PageTitle, Stat } from "@/components/ui";
 import { InstitutionDirectory, type DirectoryItem } from "@/components/institution-directory";
 
 export const metadata: Metadata = {
-  title: "المؤسسات الجامعية — 248 مؤسسة ومعدلاتها",
+  title: `المؤسسات الجامعية — ${stats.institutions} مؤسسة ومعدلاتها`,
   description:
-    "فهرس المؤسسات الجامعية الجزائرية التي نشرت معدلات قبول 2026: جامعات، مراكز جامعية، مدارس عليا ومدارس أساتذة، بعدد التخصصات لكل مؤسسة.",
+    `فهرس المؤسسات الجامعية الجزائرية التي نشرت معدلات قبول 2026: جامعات، مراكز جامعية، مدارس عليا ومدارس أساتذة، بعدد التخصصات لكل مؤسسة.`,
   alternates: { canonical: "/jamiat" },
 };
 
@@ -30,7 +30,7 @@ export default function InstitutionsPage() {
         <PageTitle
           eyebrow="الفهرس"
           title="المؤسسات، لا الأرقام فقط"
-          lead="248 مؤسسة ظهرت في ملف 2026. افتح أي مؤسسة لترى التخصصات التي نشرت لها حدًّا أدنى، مع أعمدة الأولويات الثلاثة."
+          lead={`${stats.institutions} مؤسسة ظهرت في ملف 2026. افتح أي مؤسسة لترى التخصصات التي نشرت لها حدًّا أدنى، مع أعمدة الأولويات الثلاثة.`}
           aside={
             <div className="flex border border-line bg-surface">
               <Stat value={stats.institutions} label="مؤسسة" />
