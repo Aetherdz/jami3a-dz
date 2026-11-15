@@ -77,7 +77,7 @@ export function ProgramList({ items }: { items: ProgramListItem[] }) {
               className={`inline-flex h-11 items-center rounded-card border px-4 text-[14px] font-medium transition-colors sm:h-9 ${
                 active
                   ? "border-ink bg-ink text-bg"
-                  : "border-line-strong bg-transparent text-muted hover:border-ink hover:text-ink"
+                  : "border-line-strong bg-surface text-ink hover:border-ink"
               }`}
             >
               {trackNames[value].short}

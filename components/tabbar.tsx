@@ -16,7 +16,7 @@ export function TabBar() {
   return (
     <nav
       aria-label="التنقل السريع"
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-line-strong bg-bg/98 backdrop-blur-sm md:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-line-strong bg-bg md:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <ul className="grid grid-cols-5">

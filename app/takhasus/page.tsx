@@ -38,20 +38,20 @@ export default function ProgramsPage() {
           <ProgramSearch index={searchIndex} />
         </div>
 
-        <div className="flex flex-wrap gap-1.5 border-y border-line py-3">
+        <div className="space-y-3 border-y border-line py-4">
           {families.map((family) => (
-            <span key={family.id} className="flex flex-wrap items-center gap-1.5">
-              <span className="text-[12px] uppercase tracking-normal text-muted/60">{family.short}</span>
+            <div key={family.id} className="flex flex-wrap items-center gap-2">
+              <span className="w-full text-[12.5px] text-muted sm:w-20">{family.short}</span>
               {family.fieldIds.map((id) => (
                 <Link
                   key={id}
                   href={`/mayadin/${id}`}
-                  className="rounded-card border border-line px-2 py-1 text-[13px] text-muted hover:border-ink hover:text-ink"
+                  className="inline-flex h-11 items-center rounded-card border border-line-strong bg-surface px-3.5 text-[13.5px] text-ink hover:border-ink sm:h-8 sm:px-2.5"
                 >
                   {fieldById[id].ar}
                 </Link>
               ))}
-            </span>
+            </div>
           ))}
         </div>
 

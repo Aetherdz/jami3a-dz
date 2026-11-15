@@ -97,7 +97,7 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
           onClick={() => setType("all")}
           aria-pressed={type === "all"}
           className={`inline-flex h-11 items-center rounded-card border px-4 text-[13.5px] sm:h-9 sm:px-3 ${
-            type === "all" ? "border-ink bg-ink text-bg" : "border-line text-muted hover:border-ink hover:text-ink"
+            type === "all" ? "border-ink bg-ink text-bg" : "border-line-strong bg-surface text-ink hover:border-ink"
           }`}
         >
           الكل <span className="num mr-1 text-[12px] opacity-70">{items.length}</span>
@@ -109,7 +109,7 @@ export function InstitutionDirectory({ items }: { items: DirectoryItem[] }) {
             onClick={() => setType(entry.key)}
             aria-pressed={type === entry.key}
             className={`inline-flex h-11 items-center rounded-card border px-4 text-[13.5px] sm:h-9 sm:px-3 ${
-              type === entry.key ? "border-ink bg-ink text-bg" : "border-line text-muted hover:border-ink hover:text-ink"
+              type === entry.key ? "border-ink bg-ink text-bg" : "border-line-strong bg-surface text-ink hover:border-ink"
             }`}
           >
             {typeLabel[entry.key] ?? entry.key} <span className="num mr-1 text-[12px] opacity-70">{entry.count}</span>

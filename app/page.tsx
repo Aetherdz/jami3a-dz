@@ -90,7 +90,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/hayat"
-                className="inline-flex h-12 items-center rounded-card border border-cream/40 px-6 text-[15px] font-semibold text-cream hover:border-cream"
+                className="inline-flex h-12 items-center rounded-card border border-cream/40 bg-deep-raised px-6 text-[15px] font-semibold text-cream hover:border-cream"
               >
                 الحياة الجامعية
               </Link>

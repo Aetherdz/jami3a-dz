@@ -72,7 +72,7 @@ export function ProgramSearch({ index, tone = "light" }: { index: SearchEntry[];
         placeholder="الطب، الإعلام الآلي، الحقوق…"
         className={
           dark
-            ? "mt-2 h-12 w-full rounded-card border border-cream/35 bg-transparent px-4 text-[17px] text-cream outline-none placeholder:text-cream/45 focus:border-cream"
+            ? "mt-2 h-12 w-full rounded-card border border-cream/35 bg-deep-raised px-4 text-[17px] text-cream outline-none placeholder:text-cream/55 focus:border-cream"
             : "mt-2 h-12 w-full rounded-card border border-line-strong bg-surface px-4 text-[17px] text-ink outline-none placeholder:text-muted/70 focus:border-brand focus:ring-1 focus:ring-brand"
         }
         autoComplete="off"

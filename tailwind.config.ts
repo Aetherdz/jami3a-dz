@@ -15,6 +15,7 @@ const config: Config = {
         brand: "rgb(var(--brand) / <alpha-value>)",
         "brand-ink": "rgb(var(--brand-ink) / <alpha-value>)",
         deep: "rgb(var(--deep) / <alpha-value>)",
+        "deep-raised": "rgb(var(--deep-raised) / <alpha-value>)",
         cream: "rgb(var(--cream) / <alpha-value>)",
         accent: "rgb(var(--accent) / <alpha-value>)",
         "accent-soft": "rgb(var(--accent-soft) / <alpha-value>)",

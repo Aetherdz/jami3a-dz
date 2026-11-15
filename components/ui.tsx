@@ -6,7 +6,7 @@ import { Mark } from "./mark";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line-strong bg-bg/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-b border-line-strong bg-bg">
       <div aria-hidden className="h-[3px] bg-accent" />
       <div className="shell flex h-16 items-center justify-between gap-4">
         <Link href="/" className="flex h-11 items-center gap-2.5" aria-label="جامعة الجزائر — الصفحة الرئيسية">

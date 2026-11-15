@@ -122,7 +122,7 @@ export function LmdCalculator() {
               <button
                 type="button"
                 onClick={() => setUnits((current) => (current.length > 1 ? current.filter((item) => item.id !== unit.id) : current))}
-                className="col-span-2 h-11 rounded-card border border-line text-[15px] text-muted hover:border-ink hover:text-ink sm:col-span-1 sm:border-0"
+                className="col-span-2 h-11 rounded-card border border-line-strong bg-surface text-[15px] text-ink hover:border-ink sm:col-span-1 sm:border-0 sm:bg-transparent"
                 aria-label={`حذف الوحدة ${index + 1}`}
               >
                 حذف

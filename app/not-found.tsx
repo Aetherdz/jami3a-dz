@@ -17,10 +17,10 @@ export default function NotFound() {
           >
             الميادين
           </Link>
-          <Link href="/takhasus" className="rounded-card border border-line-strong px-4 py-2 text-[14.5px] font-semibold text-ink hover:border-ink">
+          <Link href="/takhasus" className="rounded-card border border-line-strong bg-surface px-4 py-2 text-[14.5px] font-semibold text-ink hover:border-ink">
             كل التخصصات
           </Link>
-          <Link href="/hasiba" className="rounded-card border border-line-strong px-4 py-2 text-[14.5px] font-semibold text-ink hover:border-ink">
+          <Link href="/hasiba" className="rounded-card border border-line-strong bg-surface px-4 py-2 text-[14.5px] font-semibold text-ink hover:border-ink">
             الحاسبة
           </Link>
         </div>
