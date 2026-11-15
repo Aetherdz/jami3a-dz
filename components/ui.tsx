@@ -8,9 +8,13 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line-strong bg-bg">
       <div aria-hidden className="h-[3px] bg-accent" />
-      <div className="shell flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex h-11 items-center gap-2.5" aria-label="جامعة الجزائر — الصفحة الرئيسية">
-          <Mark className="h-8 w-8 shrink-0" />
+      <div className="shell relative flex h-16 items-center justify-between gap-4">
+        <Link
+          href="/"
+          className="flex h-11 items-center gap-2.5 max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2"
+          aria-label="جامعة الجزائر — الصفحة الرئيسية"
+        >
+          <Mark className="h-9 w-9 shrink-0 md:h-8 md:w-8" />
           <span className="leading-none">
             <span className="block font-display text-[19.5px] font-bold text-ink">جامعة</span>
             <span className="mt-0.5 block text-[10px] uppercase leading-none tracking-[0.22em] text-muted">
@@ -40,12 +44,6 @@ export function SiteHeader() {
           </Link>
         </nav>
 
-        <Link
-          href="/hasiba"
-          className="inline-flex h-11 items-center rounded-card border border-ink bg-ink px-4 text-[15px] font-semibold text-bg md:hidden"
-        >
-          احسب معدلي
-        </Link>
       </div>
     </header>
   );
