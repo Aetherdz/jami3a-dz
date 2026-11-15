@@ -94,7 +94,7 @@ export default async function FieldPage({ params }: { params: Promise<Params> })
                 <p>الشعب المقبولة: {eligibleText(field)}.</p>
                 {field.technicalFormula && field.technicalFormula !== field.formula && (
                   <p className="mt-1">
-                    شعبة تقني رياضي: <span dir="ltr" className="num">{formulaText[field.technicalFormula].ar}</span> — حسب
+                    شعبة تقني رياضي: <span className="num">{formulaText[field.technicalFormula].ar}</span> — حسب
                     استثناء المنشور لهذا الميدان.
                   </p>
                 )}
@@ -125,18 +125,31 @@ export default async function FieldPage({ params }: { params: Promise<Params> })
           <ProgramList items={items} />
         </div>
 
-        <div className="mt-10 grid gap-6 border-t border-line-strong pt-6 md:grid-cols-[1fr_1fr]">
+        <div className="mt-8 grid gap-8 border-t border-line-strong pt-5 md:grid-cols-3">
           <div>
             <p className="eyebrow">مقارنة معدلك</p>
-            <h2 className="mt-2 font-display text-[20px] font-bold text-ink">هل يقع معدلك داخل هذه الأرقام؟</h2>
+            <h2 className="mt-2 font-display text-[19px] font-bold text-ink">هل يقع معدلك داخل هذه الأرقام؟</h2>
             <p className="mt-2 text-[12px] leading-6 text-muted">
               الحاسبة تحسب معدلك الموزون لكل ميدان ثم تقارنه بأدنى رقم منشور لكل تخصص، وتبيّن لك الفارق.
             </p>
             <Link
               href="/hasiba"
-              className="mt-4 inline-block rounded-card border border-ink bg-ink px-4 py-2 text-[12.5px] font-semibold text-bg hover:bg-brand hover:border-brand"
+              className="mt-3 inline-block rounded-card border border-ink bg-ink px-4 py-2 text-[12.5px] font-semibold text-bg hover:bg-brand hover:border-brand"
             >
               إلى الحاسبة
+            </Link>
+          </div>
+          <div>
+            <p className="eyebrow">بعد القبول</p>
+            <h2 className="mt-2 font-display text-[19px] font-bold text-ink">الحياة الجامعية</h2>
+            <p className="mt-2 text-[12px] leading-6 text-muted">
+              السكن، المطعم، النقل، ونظام الدراسة: ما ينتظرك بعد أن يُغلق باب التسجيل.
+            </p>
+            <Link
+              href="/hayat"
+              className="mt-3 inline-block rounded-card border border-line-strong px-4 py-2 text-[12.5px] font-semibold text-ink hover:border-ink"
+            >
+              اقرأ الدليل
             </Link>
           </div>
           <div>

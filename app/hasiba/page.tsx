@@ -21,7 +21,7 @@ export default function CalculatorPage() {
 
         <PageTitle
           eyebrow="أدوات"
-          title="معدلك الموزون، ميدانًا بميدان"
+          title="حاسبة المعدل الموزون"
           lead="الصيغ من جدول المنشور الوزاري، والأرقام المقارن بها من ملف معدلات القبول 2026. لا نحسب شيئًا غير منشور، وحين تنقص علامة نقول لك أي علامة."
           aside={
             <div className="border border-line bg-surface px-4 py-3 text-[11px] leading-5 text-muted">
@@ -31,11 +31,11 @@ export default function CalculatorPage() {
           }
         />
 
-        <div className="py-8">
+        <div className="py-6">
           <Calculator entries={calcIndex} />
         </div>
 
-        <div className="grid gap-5 border-t border-line-strong py-8 md:grid-cols-3">
+        <div className="grid gap-5 border-t border-line-strong py-6 md:grid-cols-3">
           <div>
             <p className="eyebrow">لماذا يختلف المعدل؟</p>
             <p className="mt-2 text-[12px] leading-6 text-muted">
@@ -55,8 +55,8 @@ export default function CalculatorPage() {
             <p className="mt-2 text-[12px] leading-6 text-muted">
               المقارنة تتم مع أدنى رقم منشور للتخصص، وهو رقم أولوية واحدة من ثلاث. القبول الفعلي يعتمد على الأولوية
               والمقاعد والرغبات.{" "}
-              <Link href="/kayfa" className="text-brand hover:underline">
-                اقرأ كيف يتم التوجيه
+              <Link href="/sanawat#qiraa" className="text-brand hover:underline">
+                اقرأ كيف نقرأ الأرقام
               </Link>
               .
             </p>

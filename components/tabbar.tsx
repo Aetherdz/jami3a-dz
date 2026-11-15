@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 
 const tabs = [
   { href: "/", label: "الرئيسية", icon: "◱" },
-  { href: "/mayadin", label: "الميادين", icon: "◲" },
+  { href: "/jamiat", label: "مؤسسات", icon: "⌂" },
+  { href: "/takhasus", label: "تخصصات", icon: "◲" },
+  { href: "/hayat", label: "الحياة", icon: "✦" },
   { href: "/hasiba", label: "الحاسبة", icon: "∑" },
-  { href: "/jamiat", label: "الجامعات", icon: "⌂" },
 ];
 
 export function TabBar() {
@@ -18,7 +19,7 @@ export function TabBar() {
       className="fixed inset-x-0 bottom-0 z-40 border-t border-line-strong bg-bg/98 backdrop-blur-sm md:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <ul className="grid grid-cols-4">
+      <ul className="grid grid-cols-5">
         {tabs.map((tab) => {
           const active = tab.href === "/" ? pathname === "/" : pathname.startsWith(tab.href);
           return (

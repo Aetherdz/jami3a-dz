@@ -101,7 +101,7 @@ export default async function ProgramPage({ params }: { params: Promise<Params> 
                 </p>
                 {program.rule.technicalFormula !== program.rule.formula && (
                   <p className="mt-1">
-                    شعبة تقني رياضي: <span className="num" dir="ltr">{formulaText[program.rule.technicalFormula].ar}</span>
+                    شعبة تقني رياضي: <span className="num">{formulaText[program.rule.technicalFormula].ar}</span>
                   </p>
                 )}
                 <p className="mt-1">الشعب المقبولة حسب الميدان: {eligibleText(field)}.</p>
@@ -153,7 +153,7 @@ export default async function ProgramPage({ params }: { params: Promise<Params> 
               </p>
               <p>الأرقام هنا من الملف النهائي لدورة 2026، بعد المرحلة الثانية.</p>
               <p>
-                الأرقام لا تعني أن معدلك سيقبل: الترتيب يعتمد على الأولوية والطاقة الاستيعابية والرغبات، ويتم على أرضية
+                الأرقام لا تعني أن معدلك سيقبل: الترتيب يعتمد على الأولوية والطاقة الاستيعابية والرغبات، ويتم مركزيًا عبر منصة
                 الوزارة.
               </p>
             </div>
@@ -163,7 +163,7 @@ export default async function ProgramPage({ params }: { params: Promise<Params> 
         </div>
 
         {trend.length > 1 && (
-          <section className="mt-12 border-t border-line-strong pt-6">
+          <section className="mt-9 border-t border-line-strong pt-5">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h2 className="font-display text-[21px] font-bold text-ink">الحد الأدنى عبر الدورات</h2>
               <span className="num text-[10.5px] text-muted">
@@ -179,7 +179,7 @@ export default async function ProgramPage({ params }: { params: Promise<Params> 
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-right text-[11.5px]">
                   <thead>
-                    <tr className="border-b border-line-strong text-[10px] uppercase tracking-wider text-muted">
+                    <tr className="border-b border-line-strong text-[10px] uppercase tracking-normal text-muted">
                       <th scope="col" className="py-2 font-semibold">الدورة</th>
                       <th scope="col" className="num py-2 text-center font-semibold">أدنى</th>
                       <th scope="col" className="num py-2 text-center font-semibold">الوسيط</th>
@@ -230,7 +230,7 @@ export default async function ProgramPage({ params }: { params: Promise<Params> 
         )}
 
         {related.length > 0 && (
-          <div className="mt-12 border-t border-line-strong pt-6">
+          <div className="mt-9 border-t border-line-strong pt-5">
             <p className="eyebrow">في نفس الميدان</p>
             <ul className="mt-2 grid gap-x-8 sm:grid-cols-2">
               {related.map((item) => (

@@ -47,7 +47,7 @@ export default async function InstitutionPage({ params }: { params: Promise<Para
           <Breadcrumbs
             items={[
               { href: "/", label: "الرئيسية" },
-              { href: "/jamiat", label: "الجامعات" },
+              { href: "/jamiat", label: "المؤسسات" },
               { label: institution.ar },
             ]}
           />
@@ -84,6 +84,11 @@ export default async function InstitutionPage({ params }: { params: Promise<Para
                   </Link>
                 </h2>
                 <span className="num text-[10.5px] text-muted">{items.length} تخصصًا</span>
+              </div>
+              <div aria-hidden className="flex justify-end gap-2 pt-2 text-[9.5px] text-muted/70">
+                <span className="w-11 text-left">أ1</span>
+                <span className="w-11 text-left">أ2</span>
+                <span className="w-11 text-left">أ3</span>
               </div>
               <ul>
                 {items.map((program) => {
@@ -123,10 +128,10 @@ export default async function InstitutionPage({ params }: { params: Promise<Para
           ))}
         </div>
 
-        <p className="border-t border-line-strong py-6 text-[11px] leading-6 text-muted">
+        <p className="border-t border-line-strong py-5 text-[11px] leading-6 text-muted">
           أ1 / أ2 / أ3 هي أعمدة الأولويات في الملف الرسمي. «NC» تعني أن الفيلير لم تُشبَع، و«--» تعني أنه لم يُوجَّه أي حامل
           بكالوريا في تلك الأولوية.{" "}
-          <Link href="/kayfa" className="text-brand hover:underline">
+          <Link href="/sanawat#qiraa" className="text-brand hover:underline">
             الشرح الكامل
           </Link>
         </p>

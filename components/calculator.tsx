@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { scoreFor, type Grades } from "@/lib/calc";
-import { fields, isEligible, streams, streamById, type StreamId } from "@/lib/fields";
+import { fields, formulaText, isEligible, streams, streamById, type StreamId } from "@/lib/fields";
 import { langLabel, ruleFor, type LangId } from "@/lib/rule";
 import type { CalcEntry } from "@/lib/majors";
 
@@ -88,7 +88,9 @@ export function Calculator({ entries }: { entries: CalcEntry[] }) {
         return {
           id: field.id,
           ar: field.ar,
-          formula: rule.text,
+          // Name the formula that produced this number, not the field's default:
+          // a technical-stream candidate is ranked on another one in some fields.
+          formula: score.formula === rule.formula ? rule.text : formulaText[score.formula].ar,
           value: score.value,
           missing: score.missing,
           general: score.general,
@@ -247,9 +249,17 @@ export function Calculator({ entries }: { entries: CalcEntry[] }) {
           </span>
         </div>
 
-        <ul className="mt-1 grid gap-px bg-line sm:grid-cols-2">
+        {/*
+          Hairlines come from the cells, not from a `bg-line` backdrop: an odd
+          number of fields leaves a trailing cell empty and a gap-px backdrop
+          would paint that whole cell in the rule colour.
+        */}
+        <ul className="mt-1 grid border-t border-line sm:grid-cols-2">
           {fieldScores.map((item) => (
-            <li key={item.id} className="bg-bg p-4">
+            <li
+              key={item.id}
+              className="border-b border-line p-4 sm:border-s sm:border-line sm:[&:nth-child(odd)]:border-s-0"
+            >
               <div className="flex items-baseline justify-between gap-2">
                 <span className="min-w-0 truncate text-[12.5px] font-semibold text-ink">{item.ar}</span>
                 <span className={`num shrink-0 font-display text-[20px] font-bold ${item.value !== null ? "text-brand" : "text-muted/40"}`}>
@@ -288,9 +298,9 @@ export function Calculator({ entries }: { entries: CalcEntry[] }) {
           </div>
 
           {!bestScore ? (
-            <p className="py-8 text-[13px] text-muted">أدخل معدل البكالوريا أولًا.</p>
+            <p className="py-6 text-[13px] text-muted">أدخل معدل البكالوريا أولًا.</p>
           ) : matches.length === 0 ? (
-            <p className="py-8 text-[13px] text-muted">
+            <p className="py-6 text-[13px] text-muted">
               لا يوجد تخصص منشور يقع في مدى معدلك بهذه الشعبة. جرّب مراجعة العلامات أو الشعبة.
             </p>
           ) : (
@@ -350,7 +360,7 @@ export function Calculator({ entries }: { entries: CalcEntry[] }) {
               <p className="mt-6 border-t border-line pt-3 text-[11px] leading-6 text-muted">
                 الفارق محسوب بين معدلك الموزون و<strong className="font-semibold text-ink">أدنى</strong> رقم منشور للتخصص.
                 الملف المنشور يعرض ثلاثة أعمدة حسب الأولوية (أ1/أ2/أ3)، ولا نعرف أي عمود ينطبق على شعبتك قبل بطاقة التكوين،
-                لذلك هذه المقارنة استرشادية وليست ضمانًا. الترتيب النهائي على أرضية الوزارة.
+                لذلك هذه المقارنة استرشادية وليست ضمانًا. الترتيب النهائي مركزي، ويعتمد على الأولوية والمقاعد.
               </p>
             </>
           )}

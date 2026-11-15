@@ -14,6 +14,10 @@ const config: Config = {
         "line-strong": "rgb(var(--line-strong) / <alpha-value>)",
         brand: "rgb(var(--brand) / <alpha-value>)",
         "brand-ink": "rgb(var(--brand-ink) / <alpha-value>)",
+        deep: "rgb(var(--deep) / <alpha-value>)",
+        cream: "rgb(var(--cream) / <alpha-value>)",
+        accent: "rgb(var(--accent) / <alpha-value>)",
+        "accent-soft": "rgb(var(--accent-soft) / <alpha-value>)",
       },
       fontFamily: {
         display: ["var(--font-display)", "Georgia", "serif"],

@@ -24,26 +24,26 @@ export default function InstitutionsPage() {
     <Shell>
       <div className="shell">
         <div className="pt-5">
-          <Breadcrumbs items={[{ href: "/", label: "الرئيسية" }, { label: "الجامعات" }]} />
+          <Breadcrumbs items={[{ href: "/", label: "الرئيسية" }, { label: "المؤسسات" }]} />
         </div>
 
         <PageTitle
           eyebrow="الفهرس"
-          title="المؤسسات، لا الأرقام فقط"
-          lead={`${stats.institutions} مؤسسة ظهرت في ملف 2026. افتح أي مؤسسة لترى التخصصات التي نشرت لها حدًّا أدنى، مع أعمدة الأولويات الثلاثة.`}
+          title="المؤسسات وتخصصاتها المنشورة"
+          lead={`لكل مؤسسة في ملف 2026 صفحتها: التخصصات التي نشرت لها حدًّا أدنى، وأرقام الأولويات الثلاثة. ابحث بالاسم، أو صفِّ حسب الولاية والنوع.`}
           aside={
             <div className="flex border border-line bg-surface">
               <Stat value={stats.institutions} label="مؤسسة" />
-              <Stat value={stats.rows.toLocaleString("fr-FR")} label="سطرًا" />
+              <Stat value={stats.programs} label="تخصصًا" />
             </div>
           }
         />
 
-        <div className="py-6">
+        <div className="py-5">
           <InstitutionDirectory items={items} />
         </div>
 
-        <p className="border-t border-line-strong py-6 text-[11.5px] leading-6 text-muted">
+        <p className="border-t border-line-strong py-5 text-[11.5px] leading-6 text-muted">
           الأسماء العربية والولايات أُضيفت للقراءة فقط: الملف الرسمي ينشر الأسماء بالفرنسية. المؤسسات التي لا يذكر اسمها
           مدينة تُركت بلا ولاية بدل تخمينها. بعض المؤسسات تظهر باسم مختصر، مثل «C. UNIV. AFLOU» أو «ANNEXE …».
         </p>

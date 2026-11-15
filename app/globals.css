@@ -3,19 +3,24 @@
 @tailwind utilities;
 
 /*
- * Jami3a DZ — the same bone-and-ink print system as BAC DZ, one pine accent,
- * hairlines, tabular numerals. No shadows, no gradients, no glass.
+ * Jami3a DZ — ivory paper, deep navy ink, one royal-indigo accent with a
+ * copper hairline. Print typography, hairlines, tabular numerals.
+ * No shadows, no gradients, no glass.
  */
 :root {
-  --bg: 246 244 237;
-  --surface: 251 249 243;
-  --raised: 241 238 229;
-  --ink: 21 26 23;
-  --muted: 92 100 94;
-  --line: 214 210 198;
-  --line-strong: 168 165 152;
-  --brand: 21 82 57;
+  --bg: 247 244 235;
+  --surface: 252 250 244;
+  --raised: 239 235 223;
+  --ink: 18 24 40;
+  --muted: 100 107 121;
+  --line: 215 209 194;
+  --line-strong: 166 157 140;
+  --brand: 30 58 120;
   --brand-ink: 250 249 244;
+  --deep: 15 21 36;
+  --cream: 244 239 227;
+  --accent: 143 74 34;
+  --accent-soft: 201 142 99;
   color-scheme: light;
 }
 
@@ -41,7 +46,34 @@ body {
 
 .card { border: 1px solid rgb(var(--line)); background: rgb(var(--surface)); border-radius: 2px; }
 
-.eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgb(var(--muted)); font-weight: 600; }
+/*
+ * Micro-label above a block. The tracking that suits Latin capitals tears
+ * Arabic apart — the script is joined, and the gaps land inside words — so the
+ * eyebrow keeps its weight and size and drops the letterspacing.
+ */
+.eyebrow {
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgb(var(--muted));
+  font-weight: 600;
+}
+
+/* Eyebrow inside a dark band. */
+.on-deep .eyebrow { color: rgb(var(--accent-soft)); }
+
+/* Section index: 01, 02, 03 — the organising device on the long pages. */
+.index {
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgb(var(--accent));
+}
+
+.deep-band { background: rgb(var(--deep)); color: rgb(var(--cream)); }
+.deep-band .link { text-decoration-color: rgb(var(--accent-soft) / 0.5); }
+.deep-band .link:hover { text-decoration-color: rgb(var(--accent-soft)); }
 
 .link { text-decoration: underline; text-decoration-color: rgb(var(--brand) / 0.35); text-underline-offset: 3px; }
 .link:hover { text-decoration-color: rgb(var(--brand)); }
@@ -49,3 +81,7 @@ body {
 ::selection { background: rgb(var(--brand) / 0.16); }
 
 a, button, input, select { outline-color: rgb(var(--brand)); }
+
+/* The dark bands set their own selection and focus colours. */
+.deep-band ::selection { background: rgb(var(--accent-soft) / 0.35); }
+.deep-band a, .deep-band button { outline-color: rgb(var(--accent-soft)); }

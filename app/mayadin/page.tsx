@@ -24,9 +24,9 @@ export default function FieldsPage() {
         </div>
 
         <PageTitle
-          eyebrow="الدليل"
-          title="خمسة عشر ميدانًا، مرتّبة كما يقرأها الطالب"
-          lead={`ابدأ بالعائلة التي تناسب شعبتك، ثم الميدان، ثم التخصص، ثم المؤسسة. لا نعرض ${stats.rows.toLocaleString("fr-FR")} سطرًا في صفحة واحدة.`}
+          eyebrow="الميادين"
+          title="الميادين الخمسة عشر"
+          lead={`${stats.rows.toLocaleString("fr-FR")} سطرًا موزّعة على ${stats.programs} تخصصًا في ${stats.fields} ميدانًا. اختر عائلة شعبتك، ثم الميدان، ثم التخصص.`}
           aside={
             <div className="flex border border-line bg-surface">
               <Stat value={stats.fields} label="ميدانًا" />
@@ -36,9 +36,9 @@ export default function FieldsPage() {
           }
         />
 
-        <div className="py-8">
+        <div className="py-6">
           {families.map((family, familyIndex) => (
-            <section key={family.id} className={familyIndex > 0 ? "mt-12" : ""}>
+            <section key={family.id} className={familyIndex > 0 ? "mt-11" : ""}>
               <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-line-strong pb-3">
                 <div>
                   <p className="eyebrow">العائلة {familyIndex + 1}</p>
@@ -50,7 +50,7 @@ export default function FieldsPage() {
               </div>
               <p className="mt-3 max-w-prose text-[12.5px] leading-6 text-muted">{family.lead}</p>
 
-              <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {family.fieldIds.map((id) => {
                   const field = fieldById[id];
                   const summary = byId.get(id);
@@ -72,8 +72,8 @@ export default function FieldsPage() {
                       </div>
 
                       <div className="px-4 py-3">
-                        <p className="text-[10px] uppercase tracking-wider text-muted/70">الترتيب</p>
-                        <p dir="ltr" className="num mt-1 overflow-x-auto whitespace-nowrap text-[11px] text-ink">
+                        <p className="text-[10px] uppercase tracking-normal text-muted/70">الترتيب</p>
+                        <p className="num mt-1 overflow-x-auto whitespace-nowrap text-[11px] text-ink">
                           {formulaText[field.formula].ar}
                         </p>
                         {field.technicalFormula && field.technicalFormula !== field.formula && (

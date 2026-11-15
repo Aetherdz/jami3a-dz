@@ -108,7 +108,7 @@ export function InstitutionTable({ rows, wilayas }: { rows: InstitutionRow[]; wi
           <table className="w-full border-collapse text-right">
             <caption className="sr-only">الحدود الدنيا المنشورة لكل مؤسسة، حسب الأولويات أ1 وأ2 وأ3</caption>
             <thead>
-              <tr className="border-y border-line-strong text-[10.5px] uppercase tracking-wider text-muted">
+              <tr className="border-y border-line-strong text-[10.5px] uppercase tracking-normal text-muted">
                 <th scope="col" className="py-2 pl-2 font-semibold">
                   المؤسسة
                 </th>

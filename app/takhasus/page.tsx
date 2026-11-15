@@ -8,7 +8,7 @@ import { ProgramSearch } from "@/components/search";
 import { searchIndex } from "@/lib/majors";
 
 export const metadata: Metadata = {
-  title: `كل التخصصات — ${stats.programs} تخصصًا ومعدلاتها المنشورة`,
+  title: `التخصصات — ${stats.programs} تخصصًا ومعدلاتها المنشورة`,
   description:
     `قائمة التخصصات الجامعية في الجزائر لدورة 2026، مجمّعة في ${stats.fields} ميدانًا: لكل تخصص عدد المؤسسات وأدنى معدل منشور وصيغة الترتيب.`,
   alternates: { canonical: "/takhasus" },
@@ -24,8 +24,8 @@ export default function ProgramsPage() {
 
         <PageTitle
           eyebrow="الفهرس"
-          title="كل التخصصات، مجموعة لا مكوّمة"
-          lead={`${stats.programs} تخصصًا بعد تجميع الصفوف المتكررة. ابحث بالاسم، أو ادخل من الميدان. صفحة كل تخصص تعرض المؤسسات وأرقامها المنشورة.`}
+          title="التخصصات ومعدلاتها المنشورة"
+          lead={`${stats.programs} تخصصًا في ${stats.fields} ميدانًا. ابحث بالاسم أو ادخل من الميدان؛ صفحة كل تخصص تعرض المؤسسات والأرقام المنشورة.`}
           aside={
             <div className="flex border border-line bg-surface">
               <Stat value={stats.programs} label="تخصصًا" />
@@ -41,7 +41,7 @@ export default function ProgramsPage() {
         <div className="flex flex-wrap gap-1.5 border-y border-line py-3">
           {families.map((family) => (
             <span key={family.id} className="flex flex-wrap items-center gap-1.5">
-              <span className="text-[10px] uppercase tracking-wider text-muted/60">{family.short}</span>
+              <span className="text-[10px] uppercase tracking-normal text-muted/60">{family.short}</span>
               {family.fieldIds.map((id) => (
                 <Link
                   key={id}
@@ -55,7 +55,7 @@ export default function ProgramsPage() {
           ))}
         </div>
 
-        <div className="grid gap-x-10 gap-y-10 py-8 md:grid-cols-2">
+        <div className="grid gap-x-9 gap-y-8 py-6 md:grid-cols-2">
           {families.flatMap((family) =>
             family.fieldIds.map((id) => {
               const list = programsForField(id)

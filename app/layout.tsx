@@ -21,11 +21,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "جامعة الجزائر — المعدل الموزون ومعدلات القبول 2026",
+    default: "جامعة الجزائر — المؤسسات، التخصصات، والحياة الجامعية",
     template: "%s | جامعة",
   },
   description:
-    "احسب معدلك الموزون حسب ميدان التكوين، وقارنه بأدنى المعدلات المنشورة في 248 مؤسسة جامعية جزائرية لدورة 2026، مرتبة في 15 ميدانًا و261 تخصصًا.",
+    "دليل الجامعة الجزائرية: 248 مؤسسة، 261 تخصصًا في 15 ميدانًا، دليل الحياة الجامعية، وأرقام القبول المنشورة لدورة 2026 مع حاسبة المعدل الموزون.",
   applicationName: "جامعة الجزائر",
   authors: [{ name: "جامعة الجزائر" }],
   creator: "جامعة الجزائر",
@@ -35,16 +35,16 @@ export const metadata: Metadata = {
     locale: "ar_DZ",
     siteName: "جامعة الجزائر",
     url: "/",
-    title: "جامعة الجزائر — المعدل الموزون ومعدلات القبول 2026",
+    title: "جامعة الجزائر — المؤسسات، التخصصات، والحياة الجامعية",
     description:
-      "261 تخصصًا و248 مؤسسة، من ملف معدلات القبول الرسمي، مع صيغة الترتيب وحاسبة المعدل الموزون.",
+      "248 مؤسسة و261 تخصصًا، وحياة جامعية كاملة بعد الباب: السكن، الدراسة، السنة الأولى. مع أرقام القبول المنشورة وحاسبة المعدل الموزون.",
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f6f4ed",
+  themeColor: "#f7f4eb",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     url: siteUrl,
     inLanguage: "ar",
     description:
-      "دليل مستقل لقراءة معدلات القبول الجامعية في الجزائر وحساب المعدل الموزون لدورة 2026.",
+      "دليل مستقل للجامعة الجزائرية: المؤسسات، التخصصات، الحياة الجامعية، وأرقام القبول المنشورة.",
   };
 
   return (

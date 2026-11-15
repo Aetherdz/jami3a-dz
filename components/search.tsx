@@ -14,8 +14,9 @@ function norm(input: string): string {
     .toLowerCase();
 }
 
-export function ProgramSearch({ index }: { index: SearchEntry[] }) {
+export function ProgramSearch({ index, tone = "light" }: { index: SearchEntry[]; tone?: "light" | "dark" }) {
   const [query, setQuery] = useState("");
+  const dark = tone === "dark";
   const results = useMemo(() => {
     const q = norm(query.trim());
     if (q.length < 2) return [];
@@ -26,13 +27,19 @@ export function ProgramSearch({ index }: { index: SearchEntry[] }) {
 
   return (
     <div className="relative">
-      <label htmlFor="program-search" className="eyebrow">ابحث عن تخصص</label>
+      <label htmlFor="program-search" className="eyebrow">
+        ابحث عن تخصص
+      </label>
       <input
         id="program-search"
         value={query}
         onChange={(event) => setQuery(event.target.value)}
         placeholder="الطب، الإعلام الآلي، الحقوق…"
-        className="mt-2 h-12 w-full rounded-card border border-line-strong bg-surface px-4 text-[15px] text-ink outline-none placeholder:text-muted/70 focus:border-brand focus:ring-1 focus:ring-brand"
+        className={
+          dark
+            ? "mt-2 h-12 w-full rounded-card border border-cream/35 bg-transparent px-4 text-[15px] text-cream outline-none placeholder:text-cream/45 focus:border-cream"
+            : "mt-2 h-12 w-full rounded-card border border-line-strong bg-surface px-4 text-[15px] text-ink outline-none placeholder:text-muted/70 focus:border-brand focus:ring-1 focus:ring-brand"
+        }
         autoComplete="off"
       />
       {results.length > 0 && (
