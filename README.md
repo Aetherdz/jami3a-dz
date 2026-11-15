@@ -73,14 +73,20 @@ python3 scripts/generate-names.py      # Arabic labels for all 261 programs
 ## Layout
 
 ```
-app/            routes: home, jamiat, takhasus, mayadin, hayat, hasiba, sanawat
-components/     ui shell, program list (tracks + themes), tables, search, calculator
-lib/fields.ts   the 15 fields, 12 streams, eligibility, formula table
-lib/rule.ts     per-program formula and essential subjects
-lib/calc.ts     pure weighted-average arithmetic and buckets
-lib/majors.ts   canonicalisation, tracks, themes, aggregates, trends
+app/            routes: home, jamiat, takhasus, mayadin, hayat, hasiba
+components/     ui shell, program list (tracks + themes), directory, search, LMD calculator, mark
+lib/fields.ts   the 15 fields and 12 streams
+lib/rule.ts     per-program weighting, kept because the BAC reader mirrors it
+lib/calc.ts     numeric parsing shared by the data layer
+lib/majors.ts   canonicalisation, tracks, themes, aggregates
 scripts/        PDF → JSON, Arabic names generator
+design/         preview board for this site and BAC DZ, plus page screenshots
+public/mark.svg gate mark; public/mark-light.svg is the light variant for dark bands
 ```
+
+`design/preview-both.png` shows both sites side by side with the mark, the
+palette and what changed. `design/preview-both.html` is the source board, and
+`design/screens/` holds the raw shots it was built from.
 
 Sources: [MESRS](https://www.mesrs.dz), [circulaire.mesrs.dz](https://circulaire.mesrs.dz),
 and the published minimums files. This site does not represent the ministry or

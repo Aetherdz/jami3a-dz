@@ -10,7 +10,7 @@ const config: NextConfig = {
       { source: "/kayfa", destination: "/hayat", permanent: true },
       // Admission minima are the BAC reader's subject; the archive of sessions
       // lives there now.
-      { source: "/sanawat", destination: "https://bac-dz-iota.vercel.app", permanent: true },
+      { source: "/sanawat", destination: "https://bac-dz-iota.vercel.app/ar/tawjih-jamii", permanent: true },
     ];
   },
 };
