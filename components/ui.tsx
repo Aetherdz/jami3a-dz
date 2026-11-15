@@ -128,7 +128,7 @@ export function SiteFooter() {
 
 export function Shell({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-dvh pb-16 md:pb-0">
+    <div className="app-frame min-h-dvh pb-16 md:pb-0">
       <SiteHeader />
       <main>{children}</main>
       <SiteFooter />

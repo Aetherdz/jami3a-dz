@@ -79,6 +79,14 @@ body {
 .link { text-decoration: underline; text-decoration-color: rgb(var(--brand) / 0.35); text-underline-offset: 3px; }
 .link:hover { text-decoration-color: rgb(var(--brand)); }
 
+/* The mobile tab bar floats over the page; the frame leaves room for it and
+ * for the home indicator on phones that have one. */
+@media (max-width: 767px) {
+  .app-frame {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+  }
+}
+
 ::selection { background: rgb(var(--brand) / 0.16); }
 
 a, button, input, select { outline-color: rgb(var(--brand)); }
