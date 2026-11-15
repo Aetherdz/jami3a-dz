@@ -14,6 +14,38 @@ function norm(input: string): string {
     .toLowerCase();
 }
 
+function words(value: string): string[] {
+  return value.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+}
+
+/**
+ * Substring matching alone puts noise first: «طب» hits «الطبوغرافي» before
+ * «الطب». Rank by where the query lands — a whole word, then a word start
+ * (after the Arabic article), then anywhere — and let the shorter, broader
+ * programme win the tie.
+ */
+function rank(entry: SearchEntry, q: string): number {
+  const ar = norm(entry.ar);
+  const fr = norm(entry.fr);
+  const arWords = words(ar);
+  const frWords = words(fr);
+
+  const exact = arWords.findIndex((word) => word === q || word.replace(/^ال/, "") === q);
+  if (exact >= 0) return exact * 0.1 + ar.length / 1000;
+
+  const startAr = arWords.findIndex((word) => word.startsWith(q) || word.replace(/^ال/, "").startsWith(q));
+  if (startAr >= 0) return 10 + startAr * 0.1 + ar.length / 1000;
+
+  if (ar.includes(q)) return 20 + ar.length / 1000;
+
+  const startFr = frWords.findIndex((word) => word.startsWith(q));
+  if (startFr >= 0) return 30 + startFr * 0.1 + fr.length / 1000;
+
+  if (fr.includes(q)) return 40 + fr.length / 1000;
+
+  return Number.POSITIVE_INFINITY;
+}
+
 export function ProgramSearch({ index, tone = "light" }: { index: SearchEntry[]; tone?: "light" | "dark" }) {
   const [query, setQuery] = useState("");
   const dark = tone === "dark";
@@ -21,8 +53,11 @@ export function ProgramSearch({ index, tone = "light" }: { index: SearchEntry[];
     const q = norm(query.trim());
     if (q.length < 2) return [];
     return index
-      .filter((entry) => norm(entry.ar).includes(q) || norm(entry.fr).includes(q))
-      .slice(0, 8);
+      .map((entry) => ({ entry, score: rank(entry, q) }))
+      .filter((item) => Number.isFinite(item.score))
+      .sort((a, b) => a.score - b.score)
+      .slice(0, 8)
+      .map((item) => item.entry);
   }, [index, query]);
 
   return (
