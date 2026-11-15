@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Jami3a DZ — the same bone-and-ink print system as BAC DZ, one pine accent,
+ * hairlines, tabular numerals. No shadows, no gradients, no glass.
+ */
+:root {
+  --bg: 246 244 237;
+  --surface: 251 249 243;
+  --raised: 241 238 229;
+  --ink: 21 26 23;
+  --muted: 92 100 94;
+  --line: 214 210 198;
+  --line-strong: 168 165 152;
+  --brand: 21 82 57;
+  --brand-ink: 250 249 244;
+  color-scheme: light;
+}
+
+* { border-color: rgb(var(--line)); }
+
+html { -webkit-tap-highlight-color: transparent; }
+
+body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--ink));
+  font-feature-settings: "ss01", "cv01";
+  -webkit-font-smoothing: antialiased;
+}
+
+.num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+
+.shell { margin-inline: auto; width: 100%; max-width: 78rem; padding-inline: 1.25rem; }
+@media (min-width: 640px) { .shell { padding-inline: 2rem; } }
+
+.grid > * { min-width: 0; }
+
+.rule { border-top: 1px solid rgb(var(--line-strong)); }
+
+.card { border: 1px solid rgb(var(--line)); background: rgb(var(--surface)); border-radius: 2px; }
+
+.eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgb(var(--muted)); font-weight: 600; }
+
+.link { text-decoration: underline; text-decoration-color: rgb(var(--brand) / 0.35); text-underline-offset: 3px; }
+.link:hover { text-decoration-color: rgb(var(--brand)); }
+
+::selection { background: rgb(var(--brand) / 0.16); }
+
+a, button, input, select { outline-color: rgb(var(--brand)); }
