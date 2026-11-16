@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Amiri, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const display = Amiri({
@@ -68,6 +70,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
+      <GoogleAnalytics gaId="G-GH19QY0K7W" />
+      <Script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "87366511bd3c4b8fa9bde357fbc9b97a"}'
+        strategy="afterInteractive"
+      />
     </html>
   );
 }
