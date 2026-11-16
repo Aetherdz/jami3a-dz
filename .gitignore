@@ -4,3 +4,8 @@ out/
 .env*.local
 *.tsbuildinfo
 .DS_Store
+
+# Cloudflare Workers (OpenNext)
+.open-next/
+.wrangler/
+.dev.vars
