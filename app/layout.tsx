@@ -18,7 +18,7 @@ const sans = IBM_Plex_Sans_Arabic({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jami3adz.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

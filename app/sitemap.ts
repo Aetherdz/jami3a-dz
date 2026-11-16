@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { fields } from "@/lib/fields";
 import { institutions, programs } from "@/lib/majors";
 
-const base = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jami3adz.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
