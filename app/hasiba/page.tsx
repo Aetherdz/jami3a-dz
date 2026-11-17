@@ -62,8 +62,8 @@ export default function CalculatorPage() {
             مجموعها 30 في السداسي. غير أنّ المعامل يختلف من مؤسسة إلى أخرى — التحليل 1 مثلًا معامل 3 في كلية و4 في
             أخرى — فتأكّد من بطاقة تكوينك قبل الحساب. الحاسبة لا تضيف قاعدة لا تنصّ عليها بطاقتك. أما أرقام القبول
             والتوجيه فتخصّ موقع البكالوريا:{" "}
-            <a className="link" href="https://bac-dz-iota.vercel.app" target="_blank" rel="noreferrer">
-              bac-dz-iota.vercel.app
+            <a className="link" href="https://bac27-dz.vercel.app" target="_blank" rel="noreferrer">
+              bac27-dz.vercel.app
             </a>
             .
           </p>
